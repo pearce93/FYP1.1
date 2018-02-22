@@ -8,6 +8,9 @@
     <?php getNav(); ?>
 
     <!-- Main Content -->
+    <div class="container-fluid" style="background-color: green;">
+      a
+    </div>
 
     <?php getScripts() ?>
   </body>

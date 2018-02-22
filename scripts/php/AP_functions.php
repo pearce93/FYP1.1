@@ -442,9 +442,10 @@
       // output data of each row
       while($row = $result->fetch_assoc()) {
         //echo "<div class='col-lg-12'><label>License Plate</label>" . $row["CarLicensePlate"]. "<br/>Car Model - " . $row["CarType"] ."</>";
-        if(empty($row["Username"])){
+        if(empty($row["FirstName"])){
 
-        $Username = $row["Username"];
+          $Username = $row["Username"];
+          return $row["Username"];
         
           if(empty($Username)){
             return $row["Username"];
@@ -452,7 +453,7 @@
             echo "<p class='missingInfo'>*Please provide your first name*</p>";
           }
         }else{
-           return $row["Username"];
+           return $row["FirstName"];
         }
       }
     }

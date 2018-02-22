@@ -2,7 +2,7 @@
   <?php getHead(); ?>
      <body>
       <?php getNav(); ?>
-      <div id="wrapper">
+      <div id="wrapper" class="sidebarDisplayed">
       
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
@@ -18,7 +18,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-12">
-              <a href="#" class="btn btn-success" id="menu-toggle">Toggle Menu</a>
+              <a href="#" class="btn btn-primary" id="menu-toggle"><i id="menu-toggle-button" class="fa fa-arrow-left"></i></a>
               <h1>Sidebar Layout</h1>      
               <p>This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. </p>
             </div>
@@ -42,6 +42,13 @@
         //Collapases and shows sidebar
         $("#wrapper").toggleClass("sidebarDisplayed");
 
+        if($("#menu-toggle-button").hasClass("fa-arrow-left")){
+          $("#menu-toggle-button").removeClass("fa-arrow-left");
+          $("#menu-toggle-button").addClass("fa-arrow-right");
+        }else{
+          $("#menu-toggle-button").removeClass("fa-arrow-right");
+          $("#menu-toggle-button").addClass("fa-arrow-left");
+        }
       });
 
       
