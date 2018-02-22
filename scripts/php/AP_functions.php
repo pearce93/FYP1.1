@@ -20,18 +20,26 @@
         <title>Bootstrap 101 Template</title>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 
+        <!-- Favicon -->
+        <link rel='shortcut icon' type='image/png' href='img/icons/favicon.ico'/>
 
-        <link rel='stylesheet' href='css/custom/navigation.css'>
-        <link rel='stylesheet' href='css/custom/login.css'>
-        <!-- Bootstrap -->
-        <!-- Latest compiled and minified CSS -->
-        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>
+          <link rel='stylesheet' href='css/custom/carPark.css'> 
+        <!-- Bootstrap latest compiled and minified CSS -->
+          <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>
+          <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css' integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp' crossorigin='anonymous'>
+          <link href='css/bootstrap-datetimepicker.min.css' rel='stylesheet' media='screen'>
 
-        <!-- Optional theme -->
-        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css' integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp' crossorigin='anonymous'>
+        <!-- Font Awesome Icons -->
+          <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 
-        <link href='css/bootstrap-datetimepicker.min.css' rel='stylesheet' media='screen'>
-        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+        <!-- DataTable -->
+          <link rel='stylesheet' href='https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css'>
+
+        <!-- Custom CSS -->       
+          <link rel='stylesheet' href='css/custom/login.css'>
+          <link rel='stylesheet' href='css/custom/navigation.css'>
+          <link rel='stylesheet' href='css/custom/style.css'>
+
         </head>";
 	}
 
@@ -53,7 +61,7 @@
 
     if(!loggedIn()){
       $userSignIn = "<li><a id=\"btnSignIn\" onclick=\"document.getElementById('loginModal').style.display='block'\" style=\"width:auto;\">Sign In</a></li>
-        <li><a id=\"btnSignIn\" onclick=\"document.getElementById('registrationModal').style.display='block'\" style=\"width:auto;\">Register</a></li>";
+        <li><a id=\"btnRegister\" onclick=\"document.getElementById('registrationModal').style.display='block'\" style=\"width:auto;\">Register</a></li>";
     }else{
       
       //TODO: Add an admin check here to differentiate users
@@ -65,7 +73,7 @@
     loggedInCheck();
 
 
-		echo "<nav class='navbar navbar-inverse'>
+		echo "<nav class='navbar navbar-inverse navbar-fixed-top'>
             <div class='container-fluid'>
 
               <!-- Logo -->
@@ -82,18 +90,7 @@
               <div class='collapse navbar-collapse' id='mainNavBar'>
                 <ul class='nav navbar-nav'>
                   <li class='active'><a href='index.php'>Home</a></li>
-
-                  <!-- DropDown Menu -->
-                  <li class='dropdown'>
-                    <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Car Parks <span class='fa fa-caret-down'></span></a>
-                    <ul class='dropdown-menu'>
-                      <li><a href='sseArena.php'>SSE Arena</a></li>
-                      <li><a href='castleCourt.php'>Castle Court</a></li>
-                      <li><a href='handyPark.php'>Handy Park</a></li>
-                    </ul>
-                  </li>
-
-
+                  <li><a href='carParks.php'>Car Parks</a></li>
                   <li><a href='about.php'>About</a></li>
                   <li><a href='contact.php'>Contact</a></li>
 
@@ -126,7 +123,7 @@
                           <input id=\"userName\" type=\"text\" placeholder=\"Enter Username\" name=\"userName\" required>
 
                           <label for=\"passwordpassword\"><b>Password</b></label>
-                          <input id=\"password\" type=\"password\" placeholder=\"Enter Password\" name=\"password\" required>
+                          <input type=\"password\" placeholder=\"Enter Password\" name=\"password\" required>
 
                           <input class=\"btn btn-primary btn-block\" type=\"submit\" value=\"Login\" onclick=\"ajax_post();\" />
                         </div>
@@ -166,7 +163,7 @@
 
 
                         <label for=\"password\"><b>Password</b></label>
-                          <input id=\"password\" type=\"password\" class=\"form-control\" name=\"password\" required placeholder=\"Password\"/>
+                          <input type=\"password\" class=\"form-control\" name=\"password\" required placeholder=\"Password\"/>
                             
 
                         <label for=\"confirmPassword\"><b>Confirm Password</b>
@@ -184,44 +181,26 @@
                 </form>
               </div><!-- End Login Modal -->
             </div>
-          </div>";
+          </div>
+
+          <div class=\"topMargin\"></div>
+          ";
 	}
 
 	function getScripts(){
-		echo "<script src='scripts/js/jquery-3.3.1.min.js'></script>
+		echo "
+
+    <footer class=\"footer\">
+      <div class=\"container\">
+        <span class=\"text-muted\">Place sticky footer content here.</span>
+      </div>
+    </footer>
+    <script src='scripts/js/jquery-3.3.1.min.js'></script>
 				<!-- Latest compiled and minified JavaScript -->
 				<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous'></script>
 				<script src='scripts/js/bootstrap-datetimepicker.min.js'></script>
+        <script type='text/javascript' src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'></script>
 
-        <script>
-          /* must apply only after HTML has loaded */
-          $(document).ready(function () {
-              $(\"#loginForm\").on(\"submit\", function(e) {
-                  var postData = $(this).serializeArray();
-                  var formURL = $(this).attr(\"action\");
-                  $.ajax({
-                      url: formURL,
-                      type: \"POST\",
-                      data: postData,
-                      success: function(data, textStatus, jqXHR) {
-                          $('#contact_dialog .modal-header .modal-title').html(\"Result\");
-                          $('#contact_dialog .modal-body').html(data);
-                          $(\"#submitForm\").remove();
-                      },
-                      error: function(jqXHR, status, error) {
-                          console.log(status + \": \" + error);
-                      }
-                  });
-                  e.preventDefault();
-              });
-               
-              $(\"#submitForm\").on('click', function() {
-                  $(\"#loginForm\").submit();
-              });
-          });
-        </script>
-
-        <?php getScripts() ?>
 
     <script type=\"text/javascript\">
       function passwordCheck() {
@@ -458,5 +437,176 @@
       }
     }
     $db->close();
+  }
+
+
+  function getAllCarParks(){
+    global $db;
+    db_connect();
+    $sql = "SELECT * FROM carPark";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        //echo "<div class='col-lg-12'><label>License Plate</label>" . $row["CarLicensePlate"]. "<br/>Car Model - " . $row["CarType"] ."</>";
+
+        echo "<div class='col-xs-12 col-md-4'>
+        <div class='carParkThumb'>
+          <img class='img-thumbnail' src='img/carParks/" . $row["CarParkCode"] . ".jpg' alt='An Image of a car park/car park building' />
+          <p class='carParktitle'>" . $row["CarParkName"] . "</p>
+          <div class='carParkoverlay'></div>
+          <div class='carParkbutton'><a class='btn btn-primary' href='" . $row["CarParkCode"]. ".php'>BOOK</a></div>
+        </div>
+      </div>";
+
+        $row["CarParkName"];
+
+      }
+    }
+    $db->close();
+  }
+
+  function getCarPark($CarParkID){
+
+    
+        global $db;
+        db_connect();
+        if(isset($_SESSION['UserID'])){         
+          $user_id = $_SESSION['UserID'];
+
+          //Getting Each floor depending on the carParkID
+          $sql = "SELECT DISTINCT FloorNumber FROM space WHERE CarParkID = $CarParkID";
+          $result = $db->query($sql); 
+          if ($result->num_rows > 0) {
+            // output data of each row
+            echo "
+                <ul class='nav nav-tabs topMargin'>";
+
+              //Looping to find the amount floors in the carPark
+            while($row = $result->fetch_assoc()) {
+              echo "<li><a data-toggle='tab' href='#floor".$row["FloorNumber"]."'>Floor ".$row["FloorNumber"]."</a></li>";
+            };
+
+            echo "</ul>";
+
+            //Turning the amount of floors into different tabs with different content for each floor.
+            $sql = "SELECT DISTINCT FloorNumber FROM space WHERE CarParkID = $CarParkID";
+            $result = $db->query($sql); 
+            if($result->num_rows > 0) {
+
+              echo "<div class='tab-content'>
+
+                <div id='floor" . $row["FloorNumber"] . "' class='tab-pane active in home'>
+                  <img class='img-responsive' src='img/carparks/CastleCourt.jpg' alt='Castle Court Shopping Center Image' />
+                </div>";
+
+              while($row = $result->fetch_assoc()) {
+              
+                echo "
+                    <div id='floor" . $row["FloorNumber"] . "' class='tab-pane fade'>
+
+                      <table id='carPark" . $row["FloorNumber"] . "' class='table'>
+                        <thead>";
+
+                        $sqlTH = "SELECT DISTINCT SpaceColumn FROM space WHERE FloorNumber = " . $row["FloorNumber"] . " AND CarParkID = $CarParkID";
+                        $resultTH = $db->query($sqlTH);
+                        if($resultTH->num_rows > 0){
+                          while($rowTH = $resultTH->fetch_assoc()){
+                            if(empty($rowTH["SpaceColumn"])){
+                              echo "Error";
+                            }else{
+                              echo "<th></th>";
+                            }
+                          }
+                        }else{
+                          echo "here";
+                        }                 
+                        echo "</thead>
+                        <tbody>";
+                          
+
+                          //TODO: loop TD's so we can pivot the parking spaces.
+
+                          $sql1 = "SELECT DISTINCT SpaceRow FROM space WHERE CarParkID = $CarParkID AND FloorNumber = " . $row["FloorNumber"] ."";
+                          
+                          $result1 = $db->query($sql1); 
+                          if($result1->num_rows > 0) {
+
+                            while($row1 = $result1->fetch_assoc()){
+                              if(empty($row1["SpaceRow"])){
+
+                                echo "<td>hello</td>";
+                              }else{
+
+
+                                echo "<tr id='row". $row1["SpaceRow"] ."'>";
+
+                                  $sql2 = "SELECT DISTINCT `SpaceID`, `CarParkID`, `FloorNumber`, `SpaceRow`, `SpaceColumn`,`space`.SpaceTypeID, `spacetype`.`SpaceType` FROM `space` inner JOIN `spacetype` ON `space`.`SpaceTypeID` = `spacetype`.`SpaceTypeID` WHERE CarParkID = $CarParkID AND FloorNumber = " . $row["FloorNumber"] ." AND `SpaceRow` = ". $row1["SpaceRow"] . " ORDER BY SpaceID";
+                                  //var_dump($sql2);
+                                  $result2 = $db->query($sql2); 
+                                  if($result2->num_rows > 0) {
+                                    while ($row2 = $result2->fetch_assoc()) {
+                                      if(empty($row2["SpaceColumn"])){
+
+                                        echo "<td>hello</td>";
+                                      }else{
+                                        //todo borders in the grid and icons for cars
+                                        echo "<td id='".$row2["SpaceID"]."' class='column".$row2["SpaceColumn"]. " " .$row2["SpaceType"]."'>&nbsp;</td>";
+                                      }
+                                    }
+                                  }else{
+                                    echo "error";
+                                  }
+                                echo "</tr>";
+
+                              }
+                            }
+
+
+                          }else{
+                            echo "<td>world</td>";
+                          }
+                          echo "</tr>
+                        </tbody>
+                      </table>
+                    </div>";
+  
+              };
+              echo "</div>";
+            }
+
+          }else{
+            echo "Error";
+          }
+          $db->close();
+        }else{
+          echo "Log in";
+        }
+  }
+
+  function getFloors($CarParkID){
+    global $db;
+    db_connect();
+    $user_id = $_SESSION['UserID'];
+
+    //Getting Each floor depending on the carParkID
+    $sql = "SELECT DISTINCT FloorNumber FROM space WHERE CarParkID = $CarParkID";
+    $result = $db->query($sql); 
+    if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {        
+        if(empty(!$row["FloorNumber"])){
+          echo "
+          $(document).ready(function() {
+            $('#carPark". $row["FloorNumber"] ."').DataTable({
+              'searching': false,
+              'paging': false,
+              'info': false,
+              'ordering': false
+            });
+          });";
+        }
+      };
+    }
   }
 ?>

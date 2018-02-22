@@ -1,0 +1,116 @@
+/*********************************************************/
+/* Car Park Thumb */
+/*********************************************************/
+.carParkThumb {
+  position: relative;
+  margin-top: 50px;
+  width: 100%;
+  height: 300px;
+}
+
+.carParkoverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.5s ease;
+}
+
+.carParkThumb:hover .carParkoverlay {
+  display: block;
+  background: rgba(0, 0, 0, .3);
+}
+
+.carParkThumb > img {
+  position: absolute;
+  width: 100%;
+  min-height: 244px;
+  max-height: 245px;
+  left: 0;
+}
+
+.carParkThumb:hover img{
+  background: rgb(49, 49, 49);
+}
+.carParktitle {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 60px;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  z-index: 1;
+  transition: top .5s ease;
+}
+
+.carParkThumb:hover .title {
+  top: 90px;
+}
+
+.carParkbutton {
+  position: absolute;
+  width: 100%;
+  left:0;
+  top: 150px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.carParkbutton a {
+  padding: 12px 48px;
+  text-align: center;
+  background-color: white;
+  z-index: 1;
+}
+
+.carParkThumb:hover .carParkbutton {
+  opacity: 1;
+}
+
+
+/*********************************************************/
+/* Car Park Table */
+/*********************************************************/
+.Available {
+    position:relative;
+	border-left: solid;
+	width: 4px;
+}
+
+.Available:last-of-type{
+	border-right: solid;
+}
+
+.Available:before {
+    content: "\f1b9";  /* this is your text. You can also use UTF-8 character codes as I do here */
+    font-family: FontAwesome;
+    left:-5px;
+    top:0;
+ }
+ 
+ .Available:hover {
+ 	border-color: black;
+    color: #1275BB;
+    cursor: pointer;
+ }
+
+.Road {
+    position:relative;
+    background-color: grey;
+}
+
+.Road{
+    cursor: not-allowed;
+}
+
+.Road:first-of-type {
+    border-left: solid;
+}
+
+.Road:last-of-type {
+    border-right: solid;
+}

@@ -1,0 +1,11 @@
+body{
+	background-color: #d0d2d3;
+}
+
+.topMargin{
+	margin-top: 50px;
+}
+
+a{
+	cursor: pointer;
+}
