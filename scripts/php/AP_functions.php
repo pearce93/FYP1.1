@@ -55,9 +55,10 @@
       $userSignIn = "<li><a id=\"btnSignIn\" onclick=\"document.getElementById('loginModal').style.display='block'\" style=\"width:auto;\">Sign In</a></li>
         <li><a id=\"btnSignIn\" onclick=\"document.getElementById('registrationModal').style.display='block'\" style=\"width:auto;\">Register</a></li>";
     }else{
-      getUserFirstName();
+      
       //TODO: Add an admin check here to differentiate users
-      $userSignIn = "<li><a href='admin.php'>" . $Username . "</a></li>";
+      $userSignIn = "<li><a href='admin.php'>" . getUserFirstName() . "</a></li>";
+     
     }
 
 
@@ -227,7 +228,7 @@
         var password = document.getElementById(\"password\").value;
         var confirmPassword = document.getElementById(\"confirmPassword\").value;
         var ok = true;
-        alert(\"Password: \" + Password + \"\nconfirm: \" + confirmPassword);
+        alert('Password: ' + Password + 'confirm: ' + confirmPassword);
         if (password != confirmPassword) {
           //alert(\"Passwords Do not match\");
           document.getElementById(\"password\").style.borderColor = \"#E34234\";
@@ -441,19 +442,19 @@
       // output data of each row
       while($row = $result->fetch_assoc()) {
         //echo "<div class='col-lg-12'><label>License Plate</label>" . $row["CarLicensePlate"]. "<br/>Car Model - " . $row["CarType"] ."</>";
+        if(empty($row["Username"])){
 
-        if(empty($row["FirstName"])){
-          echo "<p class='missingInfo'>*Please provide your first name*</p>";
+        $Username = $row["Username"];
+        
+          if(empty($Username)){
+            return $row["Username"];
+          }else{            
+            echo "<p class='missingInfo'>*Please provide your first name*</p>";
+          }
         }else{
-          echo "<tr>
-            <td>".$row["FirstName"]."</td>
-            </tr>";
+           return $row["Username"];
         }
       }
-    }else{
-      echo "<tr>
-            <td></td>
-            </tr>";
     }
     $db->close();
   }
