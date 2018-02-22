@@ -9,7 +9,7 @@
 
     <!-- Main Content -->
 
-    <form id="loginForm1" class="modal-content animate" action="registration.php" method="post">
+    <form id="loginForm2" class="modal-content animate" action="registration.php" method="post">
     <div class="imgcontainer">
       <span onclick="document.getElementById('loginModal').style.display='none'" class="close" title="Close Modal">&times;</span>
       <h1>Sign In</h1>
@@ -26,11 +26,11 @@
 
 
        		<label for="password"><b>Password</b></label>
-          	<input id="password" type="password" class="form-control" name="password" required placeholder="Password"/>
+          	<input id="password1" type="password" class="form-control" name="password" required placeholder="Password"/>
 							
 
        		<label for="confirmPassword"><b>Confirm Password</b>
-       		</label><input id="confirmPassword" type="password" class="form-control" name="confirmPassword" required placeholder="Confirm Password"/>
+       		</label><input id="confirmPassword1" type="password" class="form-control" name="confirmPassword" required placeholder="Confirm Password"/>
 
           	<input class="btn btn-success btn-block" type="submit" value="Register" />
         </div>
@@ -44,57 +44,6 @@
   </form>
   <br/><br/>
 
-
-    <form action="registration.php" onsubmit="return passwordCheck()" method="post">
-						<div class="row">
-							<div class="col-lg-offset-2 col-lg-4">
-								<label>Username:</label>
-							</div>
-							<div class="col-lg-6 registrationBoxLabel">
-								<input type="text" class="form-control" name="username" required placeholder="Username"/>
-							</div>
-						</div>
-						<br/>
-						<div class="row">
-							<div class="col-lg-offset-2 col-lg-4">
-								<label>Email:</label>
-							</div>
-							<div class="col-lg-6">
-								<input type="email" class="form-control" name="email"pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required placeholder="Email Address"/>
-							</div>
-						</div>
-						<br/>
-						<div class="row">
-							<div class="col-lg-offset-2 col-lg-4">
-								<label>Password:</label>
-							</div>
-							<div class="col-lg-6">
-								<input id="password" type="password" class="form-control" name="password" required placeholder="Password"/>
-							</div>
-						</div>
-						<br/>
-						<div class="row">
-							<div class="col-lg-offset-2 col-lg-4">
-								<label>Confirm Password:</label>
-							</div>
-							<div class="col-lg-6">
-								<input id="confirmPassword" type="password" class="form-control" name="confirmPassword" required placeholder="Confirm Password"/>
-							</div>
-						</div>
-						<br/>
-						<div class="row">
-							<div class="col-lg-offset-4 col-lg-4">
-								<input class="btn btn-success btn-block" type="submit" value="Register" />
-							</div>
-						</div>
-						<hr/>
-						<div class="row">
-							<div class="col-lg-offset-10 col-lg-2">
-								<a href="signin.php">Sign In</a>
-							</div>
-						</div>
-						<br/>
-					</form>
 
     <?php getScripts() ?>
 

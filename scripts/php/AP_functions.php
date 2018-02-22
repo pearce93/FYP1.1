@@ -55,8 +55,9 @@
       $userSignIn = "<li><a id=\"btnSignIn\" onclick=\"document.getElementById('loginModal').style.display='block'\" style=\"width:auto;\">Sign In</a></li>
         <li><a id=\"btnSignIn\" onclick=\"document.getElementById('registrationModal').style.display='block'\" style=\"width:auto;\">Register</a></li>";
     }else{
+      getUserFirstName();
       //TODO: Add an admin check here to differentiate users
-      $userSignIn = "<li><a href='admin.php'>account</a></li>";
+      $userSignIn = "<li><a href='admin.php'>" . $Username . "</a></li>";
     }
 
 
@@ -411,15 +412,15 @@
         }
         //Checking that the username exists in the database.
         if(mysqli_num_rows($tbl)>0){
-          createSession($_SESSION["UserID"]);
+          $user_id = $user['UserID'];
+          createSession($user_id);
         } else {
           echo "die";
           echo "die";
           die();
           header('Location: register.php');
         }
-        $user_id = $user['UserID'];
-        createSession($user_id);
+        
       }
 
       
@@ -429,4 +430,31 @@
     }
   }
 
+  function getUserFirstName(){
+    global $db;
+    db_connect();
+    $user_id = $_SESSION['UserID'];
+    $sql = "SELECT * FROM user WHERE UserID = $user_id";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        //echo "<div class='col-lg-12'><label>License Plate</label>" . $row["CarLicensePlate"]. "<br/>Car Model - " . $row["CarType"] ."</>";
+
+        if(empty($row["FirstName"])){
+          echo "<p class='missingInfo'>*Please provide your first name*</p>";
+        }else{
+          echo "<tr>
+            <td>".$row["FirstName"]."</td>
+            </tr>";
+        }
+      }
+    }else{
+      echo "<tr>
+            <td></td>
+            </tr>";
+    }
+    $db->close();
+  }
 ?>
