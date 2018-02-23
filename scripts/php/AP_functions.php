@@ -55,7 +55,7 @@
       $result = $db->query($sql);
 
       if ($result->num_rows > 0) {
-        $adminCheck = "<li><a href='admin.php'>Admin</a></li>";
+        $adminCheck = "<li><a href='account.php'>Admin</a></li>";
       }
     }
 
@@ -65,7 +65,7 @@
     }else{
       
       //TODO: Add an admin check here to differentiate users
-      $userSignIn = "<li><a href='admin.php'>" . getUserFirstName() . "</a></li>";
+      $userSignIn = "<li><a href='account.php'>" . getUserFirstName() . "</a></li>";
      
     }
 
@@ -110,7 +110,7 @@
           <div class=\"container\">
             <div class=\"row\">
                 <div id=\"loginModal\" class=\"modal\">  
-                  <form id=\"loginForm1\" class=\"modal-content animate\" action=\"signIn.php\" method=\"post\">
+                  <form id=\"loginForm\" class=\"modal-content animate\" action=\"signIn.php\" method=\"post\">
                     <div class=\"imgcontainer\">
                       <span onclick=\"document.getElementById('loginModal').style.display='none'\" class=\"close\" title=\"Close Modal\">&times;</span>
                       <h1>Sign In</h1>
@@ -146,7 +146,7 @@
             <div class=\"row\">
 
               <div id=\"registrationModal\" class=\"modal\">  
-                <form id=\"registrationForm1\" class=\"modal-content animate\" action=\"registration.php\" method=\"post\">
+                <form id=\"registrationForm\" class=\"modal-content animate\" action=\"registration.php\" method=\"post\">
                   <div class=\"imgcontainer\">
                     <span onclick=\"document.getElementById('registrationModal').style.display='none'\" class=\"close\" title=\"Close Modal\">&times;</span>
                     <h1>Register</h1>
@@ -298,7 +298,7 @@
 
   function createSession($user_id){
     $_SESSION['UserID'] = $user_id;
-    header("Location: admin.php");
+    header("Location: {$_SERVER['HTTP_REFERER']}");
   }
 
   function loggedInCheck(){
@@ -481,7 +481,7 @@
           if ($result->num_rows > 0) {
             // output data of each row
             echo "
-                <ul class='nav nav-tabs topMargin'>";
+                <ul class='nav nav-tabs'>";
 
               //Looping to find the amount floors in the carPark
             while($row = $result->fetch_assoc()) {
@@ -498,7 +498,7 @@
               echo "<div class='tab-content'>
 
                 <div id='floor" . $row["FloorNumber"] . "' class='tab-pane active in home'>
-                  <img class='img-responsive' src='img/carparks/CastleCourt.jpg' alt='Castle Court Shopping Center Image' />
+                  
                 </div>";
 
               while($row = $result->fetch_assoc()) {

@@ -8,6 +8,10 @@
   height: 300px;
 }
 
+.carParkThumb:hover .carParkThumb{
+  opacity: 0.7;
+}
+
 .carParkoverlay {
   position: absolute;
   top: 0;

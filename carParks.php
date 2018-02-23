@@ -10,6 +10,11 @@
     <!-- Main Content -->
 	<div class="container">	
 		<div class="row">
+			<div class="col-xs-12">
+				<h1>Car Parks</h1>
+			</div>
+		</div>
+		<div class="row">
 
 			<?php getAllCarParks(); ?>
 

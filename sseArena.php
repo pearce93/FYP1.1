@@ -8,37 +8,184 @@
     <?php getNav(); ?>
 
     <!-- Main Content -->
-    <div class="container-fluid" style="background-color: #415262;">
-    	<div class="row">
-    		<div class="col-md-4">    			
-				<?php getCarPark('2'); ?>
-    		</div>
-    	</div>
-    </div>
+    <div class="container containerMargin">
+		<div class="row">
+			<div class="col-xs-12 col-md-8">
+				<h2>Book Parking Space</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="panel-group" id="accordion">	
+
+				<!-- Login -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<label for='r1'>
+								<input class="radioButton" type='radio' id='r1' name='occupation' value='Login' required /> 
+								<h1 style="display: inline;">Sign In</h1>
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"></a>
+							</label>
+							<p>
+								10% discount
+							</p>
+						</h4>
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse">
+						<div class="panel-body">
+							<form id="loginFormBooking" class="modal-content animate" action="signIn.php" method="post">
+								<div class="imgcontainer">
+									<span onclick="document.getElementById('loginModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+									<h1>Sign In</h1>
+									<img src="img/avatar/account.png" alt="Avatar" class="avatar">
+								</div>
+								<div class="row">
+									<div class="col-md-offset-2 col-md-8 col-xs-12">
+										<div class="modalContainer">
+											<label for="userName"><b>Username</b></label>
+											<input type="text" placeholder="Enter Username" name="userName" required>
+
+											<label for="passwordpassword"><b>Password</b></label>
+											<input type="password" placeholder="Enter Password" name="password" required>
+
+											<input class="btn btn-primary btn-block" type="submit" value="Login" onclick="ajax_post();" />
+										</div>
+									</div>
+								</div>
+
+								<div class="modalContainer" style="background-color:#f1f1f1">
+									<button type="button" onclick="document.getElementById('loginModal').style.display='none'" class="btn btn-danger">Cancel</button>
+									<span class="psw">Forgot <a href="#">password?</a></span>
+								</div>
+								<div id="status"></div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<!-- Register -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class=panel-title>
+							<label for='r2'>
+								<input class="radioButton" type='radio' id='r2' name='occupation' value='Register' required /><h1 style="display: inline;">Register</h1>
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"></a>
+							</label>
+							<p>
+								Get 10% discount and access to exclusive offers
+							</p>
+						</h4>
+					</div>
+					<div id="collapseTwo" class="panel-collapse collapse">
+						<div class="panel-body">
+							<form id="registrationFormBooking" class="modal-content animate bookingForm" action="registration.php" method="post">
+								<div class="imgcontainer">
+									<span onclick="document.getElementById('registrationModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+									<h1>Register</h1>
+									<img src="img/avatar/account.png" alt="Avatar" class="avatar">
+								</div>
+								<div class="row">
+									<div class="col-md-offset-2 col-md-8 col-xs-12">
+										<div class="modalContainer">
+											<label for="userName"><b>Username</b></label>
+											<input type="text" class="form-control" name="username" required placeholder="Username"/>
+
+											<label for="passwordpassword"><b>Email</b></label>
+											<input type="email" class="form-control" name="email"pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required placeholder="Email Address" />
+
+
+											<label for="password"><b>Password</b></label>
+											<input type="password" class="form-control" name="password" required placeholder="Password"/>
+
+
+											<label for="confirmPassword"><b>Confirm Password</b>
+											</label><input type="password" class="form-control" name="confirmPassword" required placeholder="Confirm Password" />
+
+											<input class="btn btn-success btn-block" type="submit" value="Register" />
+										</div>
+									</div>
+								</div>
+								<div class="modalContainer" style="background-color:#f1f1f1">
+								<button type="button" onclick="document.getElementById('registrationModal').style.display='none'" class="btn btn-danger">Cancel</button>
+								<span class="psw">Forgot <a href="#">password?</a></span>
+								</div>
+								<div id="status"></div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<!-- Book Space -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class=panel-title>
+							<label for='r3'>
+								<input class="radioButton" type='radio' id='r3' checked='checked' name='occupation' value='book' required /> 
+								<h1 style="display: inline;">Book Parking Space</h1>
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"></a>
+							</label>
+							<p>
+								Discount will not apply
+							</p>
+						</h4>
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse in">
+						<div class="panel-body">
+							<form id="notRegisteredBooking" class="modal-content animate bookingForm" action="registration.php" method="post">
+								<div class="row">
+									<div class="col-md-offset-2 col-md-8 col-xs-12">
+										<div class="modalContainer">
+											<label for="dateArriving"><b>Username</b></label>
+											<input type="text" class="form-control" name="dateArriving" required placeholder="Username"/>
+
+											<label for="passwordpassword"><b>Email</b></label>
+											<input type="email" class="form-control" name="email"pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required placeholder="Email Address" />
+
+
+											<label for="password"><b>Password</b></label>
+											<input type="password" class="form-control" name="password" required placeholder="Password"/>
+
+
+											<label for="confirmPassword"><b>Confirm Password</b>
+											</label><input type="password" class="form-control" name="confirmPassword" required placeholder="Confirm Password" />
+
+											<input class="btn btn-success btn-block" type="submit" value="Register" />
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>    
 
     <?php getScripts() ?>
 
-
+    <!-- Accordion js -->
     <script type="text/javascript">
-			var idList = [];
-			<?php getFloors('2'); ?>
+    	$('#r1').on('click', function(){
+			$(this).parent().find('a').trigger('click');
+			$('html, body').animate({
+				scrollTop: $("#collapseOne").offset().top
+			}, 800);
+		});
 
-			$("table > tbody > tr").on("click", "td", function() {
-				
-				var cellID = $(this).attr('id');
-				
-				if(jQuery.inArray(cellID, idList) !== -1){
-					for(var i = idList.length-1; i>=0; i--){
-						if(idList[i] === cellID){
-							idList.splice(i, 1);
-						}
-					}
-				}else{
-					idList.push(cellID);
-				}
-				
-				console.log(idList);
-			});
-		</script>
+		$('#r2').on('click', function(){
+			$(this).parent().find('a').trigger('click');
+			$('html, body').animate({
+				scrollTop: $("#collapseTwo").offset().top
+			}, 800);
+		});
+
+		$('#r3').on('click', function(){
+			$(this).parent().find('a').trigger('click');
+			$('html, body').animate({
+				scrollTop: $("#collapseThree").offset().top
+			}, 800);
+		});
+    </script><!-- End Accordion js -->
+
   </body>
 </html>
