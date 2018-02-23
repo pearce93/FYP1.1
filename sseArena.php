@@ -138,15 +138,22 @@
 											<div id="reservation">
 												<form method="post" action="#">
 													<div id="dateTimePair" class="row">
-														<input type="text" id="inStartDate" name="inStartDate" class="date start" placeholder="Choose Arrival Date">
-														<input type="text" id="inStartTime" name="inStartTime" class="time start" placeholder="Choose Arrival Time">
-														<input type="text" id="inEndDate" name="inEndDate" placeholder="Choose Departure Date"
-														class="date end">
-														<input type="text" id="inEndTime" name="inEndTime" placeholder="Choose Departure Time"
-														class="time end">
+														<div class="col-xs-12">
+															<input type="text" id="inStartDate" name="inStartDate" class="date start" placeholder="Choose Arrival Date">
+														</div>
+														<div class="col-xs-12">
+															<input type="text" id="inStartTime" name="inStartTime" class="time start" placeholder="Choose Arrival Time">
+														</div>
+														<div class="col-xs-12">
+															<input type="text" id="inEndDate" name="inEndDate" placeholder="Choose Departure Date" class="date end">
+														</div>
+														<div class="col-xs-12">
+															<input type="text" id="inEndTime" name="inEndTime" placeholder="Choose Departure Time" class="time end">
+														</div>	
+														
 													</div>
 													<div class="row">
-														<input type="submit" name="submit" class="btn btn-success btn-block">
+														<div class="col-xs-12"><input type="submit" name="submit" class="btn btn-success btn-block"></div>
 													</div>
 												</form>
 											</div>
