@@ -131,25 +131,25 @@
 					</div>
 					<div id="collapseThree" class="panel-collapse collapse in">
 						<div class="panel-body">
-							<form id="notRegisteredBooking" class="modal-content animate bookingForm" action="registration.php" method="post">
+							<form id="notRegisteredBooking" class="modal-content animate bookingForm" action="randomParkingSpace.php" method="post">
 								<div class="row">
 									<div class="col-md-offset-2 col-md-8 col-xs-12">
 										<div class="modalContainer">
-											<label for="dateArriving"><b>Username</b></label>
-											<input type="text" class="form-control" name="dateArriving" required placeholder="Username"/>
-
-											<label for="passwordpassword"><b>Email</b></label>
-											<input type="email" class="form-control" name="email"pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required placeholder="Email Address" />
-
-
-											<label for="password"><b>Password</b></label>
-											<input type="password" class="form-control" name="password" required placeholder="Password"/>
-
-
-											<label for="confirmPassword"><b>Confirm Password</b>
-											</label><input type="password" class="form-control" name="confirmPassword" required placeholder="Confirm Password" />
-
-											<input class="btn btn-success btn-block" type="submit" value="Register" />
+											<div id="reservation">
+												<form method="post" action="#">
+													<div id="dateTimePair" class="row">
+														<input type="text" id="inStartDate" name="inStartDate" class="date start" placeholder="Choose Arrival Date">
+														<input type="text" id="inStartTime" name="inStartTime" class="time start" placeholder="Choose Arrival Time">
+														<input type="text" id="inEndDate" name="inEndDate" placeholder="Choose Departure Date"
+														class="date end">
+														<input type="text" id="inEndTime" name="inEndTime" placeholder="Choose Departure Time"
+														class="time end">
+													</div>
+													<div class="row">
+														<input type="submit" name="submit" class="btn btn-success btn-block">
+													</div>
+												</form>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -163,8 +163,41 @@
 
     <?php getScripts() ?>
 
+	<script type="text/javascript" src="scripts/js/DatePair/datepair.js"></script>
+	<script type="text/javascript" src="scripts/js/DatePair/jquery.datepair.js"></script>
+	<script>
+		$('input.date').each(function() {
+		    $(this).datepicker({
+				minDate: 0,
+		        dateFormat: 'dd/mm/yy',
+		        autoclose: true
+		    });
+		});
+
+		$('input.time').each(function() {
+		    $(this).timepicker({
+		        showDuration: true,
+		        timeFormat: 'g:i a',
+		        forceRoundTime: true
+		    });
+		});
+
+		$('#dateTimePair').datepair({
+			parseDate: function(input){
+			return $(input).datepicker('getDate');
+			},
+			updateDate: function(input, dateObj){
+			return $(input).datepicker('setDate', dateObj);
+			}
+		});
+
+	</script>
+
+
     <!-- Accordion js -->
     <script type="text/javascript">
+    	
+
     	$('#r1').on('click', function(){
 			$(this).parent().find('a').trigger('click');
 			$('html, body').animate({
@@ -181,9 +214,6 @@
 
 		$('#r3').on('click', function(){
 			$(this).parent().find('a').trigger('click');
-			$('html, body').animate({
-				scrollTop: $("#collapseThree").offset().top
-			}, 800);
 		});
     </script><!-- End Accordion js -->
 
