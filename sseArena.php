@@ -139,21 +139,23 @@
 												<form method="post" action="#">
 													<div id="dateTimePair" class="row">
 														<div class="col-xs-12">
-															<input type="text" id="inStartDate" name="inStartDate" class="date start" placeholder="Choose Arrival Date">
+															<input type="text" id="inStartDate" name="inStartDate" class="date start" placeholder="Choose Arrival Date" required="">
 														</div>
 														<div class="col-xs-12">
-															<input type="text" id="inStartTime" name="inStartTime" class="time start" placeholder="Choose Arrival Time">
+															<input type="text" id="inStartTime" name="inStartTime" class="time start" placeholder="Choose Arrival Time" required="">
 														</div>
 														<div class="col-xs-12">
-															<input type="text" id="inEndDate" name="inEndDate" placeholder="Choose Departure Date" class="date end">
+															<input type="text" id="inEndDate" name="inEndDate" placeholder="Choose Departure Date" class="date end" required="">
 														</div>
 														<div class="col-xs-12">
-															<input type="text" id="inEndTime" name="inEndTime" placeholder="Choose Departure Time" class="time end">
+															<input type="text" id="inEndTime" name="inEndTime" placeholder="Choose Departure Time" class="time end" required="">
 														</div>	
 														
 													</div>
 													<div class="row">
-														<div class="col-xs-12"><input type="submit" name="submit" class="btn btn-success btn-block"></div>
+														<div class="col-xs-12">
+															<input type="submit" name="submit" class="btn btn-success btn-block">
+														</div>
 													</div>
 												</form>
 											</div>

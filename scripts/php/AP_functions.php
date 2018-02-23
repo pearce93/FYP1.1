@@ -19,7 +19,7 @@
         <head>
         <title>Bootstrap 101 Template</title>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-
+        <meta name='apple-mobile-web-app-capable' content='yes' />
         <!-- Favicon -->
         <link rel='shortcut icon' type='image/png' href='img/icons/favicon.ico'/>
 
