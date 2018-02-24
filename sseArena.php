@@ -138,17 +138,36 @@
 											<div id="reservation">
 												<form method="post" action="#">
 													<div id="dateTimePair" class="row">
-														<div class="col-xs-12">
+														<div class="col-xs-1">
+															<div class="bookingIcons">
+																<i class="fa fa-calendar"></i>
+															</div>
+														</div>
+														<div class="col-xs-11">
 															<input type="text" id="inStartDate" name="inStartDate" class="date start" placeholder="Choose Arrival Date" required="">
 														</div>
-														<div class="col-xs-12">
+														<div class="col-xs-1">
+															<div class="bookingIcons">
+																<i class="fa fa-clock-o"></i>
+															</div>
+														</div>
+														<div class="col-xs-11">
 															<input type="text" id="inStartTime" name="inStartTime" class="time start" placeholder="Choose Arrival Time" required="">
 														</div>
-														<div class="col-xs-12">
+														<div class="col-xs-1">
+															<div class="bookingIcons">
+																<i class="fa fa-calendar"></i>
+															</div>
+														</div>
+														<div class="col-xs-11">
 															<input type="text" id="inEndDate" name="inEndDate" placeholder="Choose Departure Date" class="date end" required="">
 														</div>
-														<div class="col-xs-12">
-															<input type="text" id="inEndTime" name="inEndTime" placeholder="Choose Departure Time" class="time end" required="">
+														<div class="col-xs-1">
+															<div class="bookingIcons">
+																<i class="fa fa-clock-o"></i>
+															</div>
+														</div>
+														<div class="col-xs-11"><input type="text" id="inEndTime" name="inEndTime" placeholder="Choose Departure Time" class="time end" required="">
 														</div>	
 														
 													</div>
