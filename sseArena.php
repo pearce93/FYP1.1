@@ -148,27 +148,12 @@
 														</div>
 														<div class="col-xs-1">
 															<div class="bookingIcons">
-																<i class="fa fa-clock-o"></i>
-															</div>
-														</div>
-														<div class="col-xs-11">
-															<input type="text" id="inStartTime" name="inStartTime" class="time start" placeholder="Choose Arrival Time" required="">
-														</div>
-														<div class="col-xs-1">
-															<div class="bookingIcons">
 																<i class="fa fa-calendar"></i>
 															</div>
 														</div>
 														<div class="col-xs-11">
 															<input type="text" id="inEndDate" name="inEndDate" placeholder="Choose Departure Date" class="date end" required="">
-														</div>
-														<div class="col-xs-1">
-															<div class="bookingIcons">
-																<i class="fa fa-clock-o"></i>
-															</div>
-														</div>
-														<div class="col-xs-11"><input type="text" id="inEndTime" name="inEndTime" placeholder="Choose Departure Time" class="time end" required="">
-														</div>	
+														</div>														
 														
 													</div>
 													<div class="row">
@@ -194,30 +179,10 @@
 	<script type="text/javascript" src="scripts/js/DatePair/datepair.js"></script>
 	<script type="text/javascript" src="scripts/js/DatePair/jquery.datepair.js"></script>
 	<script>
-		$('input.date').each(function() {
-		    $(this).datepicker({
-				minDate: 0,
-		        dateFormat: 'dd/mm/yy',
-		        autoclose: true
-		    });
-		});
 
-		$('input.time').each(function() {
-		    $(this).timepicker({
-		        showDuration: true,
-		        timeFormat: 'g:i a',
-		        forceRoundTime: true
-		    });
-		});
 
-		$('#dateTimePair').datepair({
-			parseDate: function(input){
-			return $(input).datepicker('getDate');
-			},
-			updateDate: function(input, dateObj){
-			return $(input).datepicker('setDate', dateObj);
-			}
-		});
+		$("#inStartDate").datetimepicker({format: 'dd MM yyyy - hh:ii'});
+		$("#inEndDate").datetimepicker({format: 'dd MM yyyy - hh:ii'});
 
 	</script>
 
