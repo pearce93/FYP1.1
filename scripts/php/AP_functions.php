@@ -625,4 +625,26 @@
       };
     }
   }
+
+  function getSpaceTypeList(){
+    global $db;
+    db_connect();
+    $sql = "SELECT * FROM SpaceType WHERE SpaceTypeID <> 2 AND SpaceTypeID <> 5";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+      // output data of each row
+
+      echo "<select class='form-control' id='spaceSelected' name='spaceSelected' style='border-radius: 0; min-height: 45px;' required>
+          <option value='' selected='true' disabled='disabled'>Choose from list";
+          $count = 1;
+      while($row = $result->fetch_assoc()) {
+        echo "<option value='".$row["SpaceTypeID"]. "'>" .$row["SpaceTypeID"]. " - " . $row["SpaceType"] . "</option>";
+      }
+      echo "</option>
+        </select>";
+    }
+    $db->close();
+    
+  }
 ?>

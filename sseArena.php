@@ -136,6 +136,15 @@
 									<div class="col-md-offset-2 col-md-8 col-xs-12">
 										<div class="modalContainer">
 											<div id="reservation">
+												<div class="col-xs-12">
+													<h1 class="text-center">Select Date's</h1>
+													<p>
+														<ul>
+															<li>Insert the date and time that you plan on arriving.</li>
+															<li>Insert the date and time that you plan on leaving.</li>
+														</ul>
+													<p>
+												</div>
 												<form method="post" action="#">
 													<div id="dateTimePair" class="row">
 														<div class="col-xs-1">
@@ -153,6 +162,16 @@
 														</div>
 														<div class="col-xs-11">
 															<input type="text" id="inEndDate" name="inEndDate" placeholder="Choose Departure Date" class="date end" required="">
+														</div>
+														<div class="col-xs-1">
+															<div class="bookingIcons">
+																<i class="fa fa-calendar"></i>
+															</div>
+														</div>
+														<div class="col-xs-11">
+															<div class="form-group">
+																<?php getSpaceTypeList(); ?>
+															</div>
 														</div>														
 														
 													</div>
