@@ -20,8 +20,10 @@
 	$SpaceID = 15;
 	$Paid = true;
 	$Active = true;
-	$startDate = $_POST["inStartDate"]
-	$endDate = $_POST["inEndDate"];
+	$EnterDate = "25/02/2018";
+	$EnterTime = "25/02/2018";
+	$ExitDate = "25/02/2018";
+	$ExitTime = "25/02/2018";
 	$Duration = 2.0;
 	$ParkingRateID = 1;
 
