@@ -12,18 +12,16 @@
 	db_connect();
 
 	// prepare and bind
-	$stmt = $db->prepare("INSERT INTO reservation (CarID, CarParkID, SpaceID, Paid, Active, EnterDate, EnterTime, ExitDate, ExitTime, Duration, ParkingRateID) VALUES (?, ?, ?,?,?,?,?,?,?,?,?)");
-	$stmt->bind_param("iiibbssssdi", $CarID, $CarParkID, $SpaceID, $Paid, $Active, $EnterDate, $EnterTime, $ExitDate, $ExitTime, $Duration, $ParkingRateID);
+	$stmt = $db->prepare("INSERT INTO reservation (CarID, CarParkID, SpaceID, Paid, Active, EnterDate, ExitDate, Duration, ParkingRateID) VALUES (?,?,?,?,?,?,?,?,?)");
+	$stmt->bind_param("iiibbssdi", $CarID, $CarParkID, $SpaceID, $Paid, $Active, $EnterDate, $ExitDate, $Duration, $ParkingRateID);
 
 	$CarID = 1;
 	$CarParkID = 1;
 	$SpaceID = 15;
 	$Paid = true;
 	$Active = true;
-	$EnterDate = "25/02/2018";
-	$EnterTime = "25/02/2018";
-	$ExitDate = "25/02/2018";
-	$ExitTime = "25/02/2018";
+	$EnterDate = $startDate;
+	$ExitDate = $endDate;
 	$Duration = 2.0;
 	$ParkingRateID = 1;
 
