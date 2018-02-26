@@ -165,7 +165,7 @@
 														</div>
 														<div class="col-xs-1">
 															<div class="bookingIcons">
-																<i class="fa fa-calendar"></i>
+																<i class="fa fa-wheelchair"></i>
 															</div>
 														</div>
 														<div class="col-xs-11">
