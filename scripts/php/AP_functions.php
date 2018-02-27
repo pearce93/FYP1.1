@@ -636,10 +636,10 @@
       // output data of each row
 
       echo "<select class='form-control' id='spaceSelected' name='spaceSelected' style='border-radius: 0; min-height: 45px;' required>
-          <option value='' selected='true' disabled='disabled'>Choose from list";
+          <option value='' selected='true' disabled='disabled'>Choose space type from list";
           $count = 1;
       while($row = $result->fetch_assoc()) {
-        echo "<option value='".$row["SpaceTypeID"]. "'>" .$row["SpaceTypeID"]. " - " . $row["SpaceType"] . "</option>";
+        echo "<option value='".$row["SpaceTypeID"]. "'>". $row["SpaceType"] . "</option>";
       }
       echo "</option>
         </select>";

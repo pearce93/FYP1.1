@@ -165,7 +165,7 @@
 														</div>
 														<div class="col-xs-1">
 															<div class="bookingIcons">
-																<i class="fa fa-wheelchair"></i>
+																<i id="spaceTypeIcon" class="fa fa-car"></i>
 															</div>
 														</div>
 														<div class="col-xs-11">
@@ -199,16 +199,22 @@
 	<script type="text/javascript" src="scripts/js/DatePair/jquery.datepair.js"></script>
 	<script>
 
+		//Declaring Date times 
+		$("#inStartDate").datetimepicker();
+		$("#inEndDate").datetimepicker();
 
-		$("#inStartDate").datetimepicker({format: 'dd MM yyyy - hh:ii'});
-		$("#inEndDate").datetimepicker({format: 'dd MM yyyy - hh:ii'});
+		//Making necessary changes to datetime to set min values etc.
+		$("#inStartDate").on("dp.change", function (e) {
+			$('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+		});
+
+
 
 	</script>
 
 
     <!-- Accordion js -->
-    <script type="text/javascript">
-    	
+    <script type="text/javascript">    	
 
     	$('#r1').on('click', function(){
 			$(this).parent().find('a').trigger('click');
@@ -229,5 +235,41 @@
 		});
     </script><!-- End Accordion js -->
 
+
+    <!-- Alert on DropDown Change -->
+    <script type="text/javascript">
+    $('#spaceSelected').change(function(){
+    	var parkingTypeID = $(this).val();
+    	switch(parkingTypeID){
+    		//Available
+    		case "1":
+    			$("#spaceTypeIcon").removeClass("fa-car");
+    			$("#spaceTypeIcon").removeClass("fa-wheelchair");
+    			$("#spaceTypeIcon").removeClass("fa-users");
+
+    			$("#spaceTypeIcon").addClass("fa-car");
+    		break;
+
+    		//Disabled
+    		case "3":
+				$("#spaceTypeIcon").removeClass("fa-car");
+    			$("#spaceTypeIcon").removeClass("fa-wheelchair");
+    			$("#spaceTypeIcon").removeClass("fa-users");
+
+    			$("#spaceTypeIcon").addClass("fa-wheelchair");
+    		break;
+
+    		//Family
+    		case "4":
+				$("#spaceTypeIcon").removeClass("fa-car");
+    			$("#spaceTypeIcon").removeClass("fa-wheelchair");
+    			$("#spaceTypeIcon").removeClass("fa-users");
+
+    			$("#spaceTypeIcon").addClass("fa-users");
+    		break;
+    	}
+    });
+
+    </script>
   </body>
 </html>
