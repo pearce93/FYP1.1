@@ -24,7 +24,7 @@
 	$sql = "SELECT * FROM `reservation` WHERE EnterDate >= '$startDate' AND ExitDate <= '$endDate'";
     $result = $db->query($sql);
 
-    //If there are spaces already booked between these dates then ensure the user does not book reserve that space.
+    //If there are spaces already booked between these dates then ensure the user does not book/reserve that space.
     if ($result->num_rows > 0) {
       while($row = $result->fetch_assoc()) {
       	//Adding the spaces that are currently booked to an array.
@@ -56,27 +56,62 @@
 		$result = $db->query($filterSpaces);		
 		$row = $result->fetch_assoc();
 		$SpaceID = $row["SpaceID"];
+
       }
     }else{
     	//User can be given first available space with no check needed because the dates have already been compared and everything was fine.
     	echo "Insert here";
-    	echo $row["SpaceID"];
     }
 
-    //echo "carSpaceArray = " . $carSpaceArray;
-
-    //print_r($carSpaceArray);
-
-	$SpaceID = 15;
-
+	//Getting the total amount of minutes they have reserved.
+	$Duration = getTimeDifference($startDate, $endDate);
+	
 
 	$Paid = true;
-	$Active = true;
 	$EnterDate = $startDate;
 	$ExitDate = $endDate;
-	$Duration = 2.0;
+
+
+	//Finding out if the weekend charge will apply or not.	
+	$day=strftime("%A",strtotime($startDate));	
+	switch ($day) {
+		//Assigning the weekend charge
+		case 'Saturday':
+			$ParkingRateID = 2;
+			break;
+		case 'Sunday':
+			$ParkingRateID = 2;
+			break;
+
+		default:
+			//Defaulting $ParkingRateID to Weekday times.
+			$ParkingRateID = 1;
+			break;
+	}
+
+	$sql = "SELECT * FROM ParkingRates WHERE RateTypeID = $ParkingRateID AND CarParkID = $CarParkID";
+	$result = $db->query($sql);
+
+	if($result->num_rows > 0) {
+		while($row = $result->fetch_assoc()) {
+			$hours = $Duration / 60;
+			$Price = $row["RateAmount"] * $hours;
+
+			echo $row['RateAmount'];
+			echo "  * $Duration";
+			echo "----------------------";
+
+			echo $Price;
+		}
+	}
+
+	//echo $ParkingRateID; 
+	
 	$ParkingRateID = 1;
+	die();
+
 	$SpaceTypeID = $spaceType;
+
 
 	//$stmt->execute();
 
@@ -89,6 +124,22 @@
 	// 	die();
 	// }
 	
-	// $stmt->close();
+	$stmt->close();
 	$db->close();
+
+
+	
+	function getTimeDifference($startDate, $endDate){
+		global $db;
+
+		$sql = "SELECT TIMESTAMPDIFF(MINUTE,'$startDate','$endDate')";
+		$result = $db->query($sql);
+		if($result->num_rows > 0) {
+			while ($row = $result->fetch_assoc()) {
+				return $row["TIMESTAMPDIFF(MINUTE,'$startDate','$endDate')"];		
+			}
+		}else{
+
+		}
+	};
 ?>

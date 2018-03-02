@@ -3,7 +3,7 @@
 
 	function db_connect(){
 		global $db;
-		$db = new mysqli('localhost', 'root', '', 'AcceleratedParking');
+		$db = new mysqli('localhost', 'root', '', 'test');
 		//Returns an error code value. Zero if no error occurred.
 		if (mysqli_connect_errno()) 
 		{
