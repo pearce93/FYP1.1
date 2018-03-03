@@ -1,7 +1,6 @@
 <?php 
 	include_once("scripts/php/AP_functions.php");
 
-	$endDate = $_POST["inEndDate"];
 	$startDate = date ("Y-m-d H:i:s", strtotime($_POST["inStartDate"])); 
 	$endDate = date ("Y-m-d H:i:s", strtotime($_POST["inEndDate"])); 
 	$spaceType = $_POST["spaceSelected"];
