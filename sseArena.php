@@ -190,8 +190,20 @@
 					</div>
 				</div>
 			</div>
+				<form action="your-server-side-code" method="POST">
+		<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+			data-key="pk_test_WYClh5xhLENmI4XTSik0mLQO"
+			data-amount="999"
+			data-name="Demo Site"
+			data-description="Widget"
+			data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+			data-locale="auto"
+			data-currency="gbp">
+		</script>
+	</form>
 		</div>
-    </div>    
+    </div>
+
 
     <?php getScripts() ?>
 
@@ -207,9 +219,6 @@
 		$("#inStartDate").on("dp.change", function (e) {
 			$('#datetimepicker2').data("DateTimePicker").minDate(e.date);
 		});
-
-
-
 	</script>
 
 

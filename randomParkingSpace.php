@@ -1,8 +1,9 @@
 <?php 
 	include_once("scripts/php/AP_functions.php");
 
-	$startDate = $_POST["inStartDate"];
 	$endDate = $_POST["inEndDate"];
+	$startDate = date ("Y-m-d H:i:s", strtotime($_POST["inStartDate"])); 
+	$endDate = date ("Y-m-d H:i:s", strtotime($_POST["inEndDate"])); 
 	$spaceType = $_POST["spaceSelected"];
 	
 	$carSpaceArray = array();
@@ -12,11 +13,11 @@
 	db_connect();
 
 	// prepare and bind
-	$stmt = $db->prepare("INSERT INTO reservation (CarID, CarParkID, SpaceID, Paid, Active, EnterDate, ExitDate, Duration, ParkingRateID, SpaceTypeID) VALUES (?,?,?,?,?,?,?,?,?,?)");
-	$stmt->bind_param("iiibbssdii", $CarID, $CarParkID, $SpaceID, $Paid, $Active, $EnterDate, $ExitDate, $Duration, $ParkingRateID, $SpaceTypeID);
+	$stmt = $db->prepare("INSERT INTO reservation (CarID, CarParkID, SpaceID, Paid, Active, EnterDate, ExitDate, Duration, ParkingRateID, SpaceTypeID, Price) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+	$stmt->bind_param("iiibbssdiid", $CarID, $CarParkID, $SpaceID, $Paid, $Active, $EnterDate, $ExitDate, $Duration, $ParkingRateID, $SpaceTypeID, $Price);
 
 	//CarID doesn't need to be selected for a random User.
-	$CarID = 0;
+	$CarID = 7;
 	//CarParkID = the value that we have recieved from the function call.
 	$CarParkID = 1;
 
@@ -55,7 +56,7 @@
 		//Assigning first available space to $SpaceID
 		$result = $db->query($filterSpaces);		
 		$row = $result->fetch_assoc();
-		$SpaceID = $row["SpaceID"];
+		$SpaceID = (int)$row["SpaceID"];
 
       }
     }else{
@@ -65,13 +66,10 @@
 
 	//Getting the total amount of minutes they have reserved.
 	$Duration = getTimeDifference($startDate, $endDate);
-	
-
-	$Paid = true;
+	$Paid = false;
+	$Active = false;
 	$EnterDate = $startDate;
 	$ExitDate = $endDate;
-
-
 	//Finding out if the weekend charge will apply or not.	
 	$day=strftime("%A",strtotime($startDate));	
 	switch ($day) {
@@ -82,12 +80,24 @@
 		case 'Sunday':
 			$ParkingRateID = 2;
 			break;
-
 		default:
 			//Defaulting $ParkingRateID to Weekday times.
 			$ParkingRateID = 1;
 			break;
 	}
+
+	//echo $ParkingRateID; 
+	$timestamp = strtotime($startDate);
+
+	$day = date('D', $timestamp);
+
+	if($day == 6 || $day == 7){
+		$ParkingRateID = 2;
+	}else{
+		$ParkingRateID = 1;
+	}
+
+	$SpaceTypeID = (int)$spaceType;
 
 	$sql = "SELECT * FROM ParkingRates WHERE RateTypeID = $ParkingRateID AND CarParkID = $CarParkID";
 	$result = $db->query($sql);
@@ -97,32 +107,44 @@
 			$hours = $Duration / 60;
 			$Price = $row["RateAmount"] * $hours;
 
-			echo $row['RateAmount'];
-			echo "  * $Duration";
-			echo "----------------------";
+			// echo $row['RateAmount'];
+			// echo "  * $Duration";
+			// echo "----------------------";
 
-			echo $Price;
+			// echo $Price;
 		}
 	}
 
-	//echo $ParkingRateID; 
-	
-	$ParkingRateID = 1;
-	die();
+	//var_dump($stmt);
+		var_dump($CarID);
+		echo " - CarID <br /><br />";
+		var_dump($CarParkID);
+		echo " - CarParkID <br /><br />";
+		var_dump($SpaceID);
+		echo " - SpaceID <br /><br />";
+		var_dump($Paid);
+		echo " - Paid <br /><br />";
+		var_dump($Active);
+		echo " - Active <br /><br />";
+		var_dump($EnterDate);
+		echo " - EnterDate <br /><br />";
+		var_dump($ExitDate);
+		echo " - ExitDate <br /><br />";
+		var_dump($Duration);
+		echo " - Duration <br /><br />";
+		var_dump($ParkingRateID);
+		echo " - ParkingRateID <br /><br />";
+		var_dump($SpaceTypeID);
+		echo " - SpaceTypeID <br /><br />";
 
-	$SpaceTypeID = $spaceType;
-
-
-	//$stmt->execute();
-
+	$stmt->execute();
+	var_dump($stmt);
 	//Checking if the reservation has been inputted.
-	// if($stmt->affected_rows > 0){
-	// 	echo "yeooooooo";
-	// 	die();
-	// }else{
-	// 	echo "fail";
-	// 	die();
-	// }
+	if($stmt->affected_rows > 0){
+		echo "yeooooooo";
+	}else{
+		echo "fail";
+	}
 	
 	$stmt->close();
 	$db->close();
@@ -136,10 +158,12 @@
 		$result = $db->query($sql);
 		if($result->num_rows > 0) {
 			while ($row = $result->fetch_assoc()) {
-				return $row["TIMESTAMPDIFF(MINUTE,'$startDate','$endDate')"];		
+				return (double)$row["TIMESTAMPDIFF(MINUTE,'$startDate','$endDate')"];		
 			}
 		}else{
 
 		}
 	};
+		die();
 ?>
+
