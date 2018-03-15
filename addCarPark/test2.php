@@ -1,6 +1,8 @@
 <?php
 
 	$arrayList = [];
+	$rowList = [];
+	$columnList = [];
 	foreach ($_POST as $key => $value){
 		echo "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
 		array_push($arrayList, $value);
@@ -8,14 +10,45 @@
 
 	$counter = 1;
 
-	for ($i=0; $i < count($arrayList); $i++) {
-		echo $arrayList[$i]."<br/>";
+
+	/*PICK UP FROM HERE*/
+	while ($counter <= count($arrayList)) {
+		echo "$counter";
+		$counter++;
+	}
+
+
+
+
+	for ($i=1; $i <= count($arrayList); $i++) {
+		echo "$i";
+		// echo $arrayList[$i]."<br/>";
 
 		//if $i multiple of 2
-
+		if((count($arrayList) % 2) == 1){
+			echo "Row<br/>";
+			array_push($rowList, $value);
+			array_shift($arrayList);
+		}else{
+			array_push($columnList, $value);
+			echo "Column<br/>";
+			array_shift($arrayList);
+		}
 		//else
 
+
+
+
+		
 	}
+		echo "Row - ";
+		var_dump($rowList);
+		echo "<br/><br/>";
+
+		echo "Column - ";
+		var_dump($columnList);
+		echo "<br/><br/>";
+
 	echo count($arrayList);
 	echo "<br/><br/><br/>";
 	die();
