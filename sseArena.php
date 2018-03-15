@@ -149,6 +149,30 @@
 													<div id="dateTimePair" class="row">
 														<div class="col-xs-1">
 															<div class="bookingIcons">
+																<i class="fa fa-user"></i>
+															</div>
+														</div>
+														<div class="col-xs-11">
+															<input type="text" id="firstName" name="firstName" class="" placeholder="First Name" required="">
+														</div>
+														<div class="col-xs-1">
+															<div class="bookingIcons">
+																<i class="fa fa-user"></i>
+															</div>
+														</div>
+														<div class="col-xs-11">
+															<input type="text" id="lastName" name="lastName" class="" placeholder="Last Name" required="">
+														</div>
+														<div class="col-xs-1">
+															<div class="bookingIcons">
+																<i class="fa fa-at"></i>
+															</div>
+														</div>
+														<div class="col-xs-11">
+															<input type="text" id="email" name="email" class="" placeholder="Email Address" required="">
+														</div>
+														<div class="col-xs-1">
+															<div class="bookingIcons">
 																<i class="fa fa-calendar"></i>
 															</div>
 														</div>
