@@ -483,11 +483,9 @@
     $db->close();
   }
 
-  function getCarPark($CarParkID){
-
-    
+  function getCarPark($CarParkID){    
         global $db;
-        db_connect();
+        //db_connect();
         if(isset($_SESSION['UserID'])){         
           $user_id = $_SESSION['UserID'];
 
@@ -526,6 +524,7 @@
                         <thead>";
 
                         $sqlTH = "SELECT DISTINCT SpaceColumn FROM space WHERE FloorNumber = " . $row["FloorNumber"] . " AND CarParkID = $CarParkID";
+                        echo $sqlTH;
                         $resultTH = $db->query($sqlTH);
                         if($resultTH->num_rows > 0){
                           while($rowTH = $resultTH->fetch_assoc()){
