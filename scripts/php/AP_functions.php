@@ -490,7 +490,7 @@
           $user_id = $_SESSION['UserID'];
 
           //Getting Each floor depending on the carParkID
-          $sql = "SELECT DISTINCT FloorNumber FROM space WHERE CarParkID = $CarParkID";
+          $sql = "SELECT DISTINCT FloorNumber FROM space WHERE CarParkID = $CarParkID ORDER BY FloorNumber";
           $result = $db->query($sql); 
           if ($result->num_rows > 0) {
             // output data of each row
@@ -524,7 +524,6 @@
                         <thead>";
 
                         $sqlTH = "SELECT DISTINCT SpaceColumn FROM space WHERE FloorNumber = " . $row["FloorNumber"] . " AND CarParkID = $CarParkID";
-                        echo $sqlTH;
                         $resultTH = $db->query($sqlTH);
                         if($resultTH->num_rows > 0){
                           while($rowTH = $resultTH->fetch_assoc()){
@@ -538,7 +537,7 @@
                           echo "here";
                         }                 
                         echo "</thead>
-                        <tbody>";
+                        <tbody class='text-center'>";
                           
 
                           //TODO: loop TD's so we can pivot the parking spaces.
@@ -555,7 +554,7 @@
                               }else{
 
 
-                                echo "<tr id='row". $row1["SpaceRow"] ."'>";
+                                echo "<tr id='carPark" . $row["FloorNumber"] . "row". $row1["SpaceRow"] ."'>";
 
                                   $sql2 = "SELECT DISTINCT `SpaceID`, `CarParkID`, `FloorNumber`, `SpaceRow`, `SpaceColumn`,`space`.SpaceTypeID, `spacetype`.`SpaceType` FROM `space` inner JOIN `spacetype` ON `space`.`SpaceTypeID` = `spacetype`.`SpaceTypeID` WHERE CarParkID = $CarParkID AND FloorNumber = " . $row["FloorNumber"] ." AND `SpaceRow` = ". $row1["SpaceRow"] . " ORDER BY SpaceID";
                                   //var_dump($sql2);
@@ -567,7 +566,7 @@
                                         echo "<td>hello</td>";
                                       }else{
                                         //todo borders in the grid and icons for cars
-                                        echo "<td id='".$row2["SpaceID"]."' class='column".$row2["SpaceColumn"]. " " .$row2["SpaceType"]."'>&nbsp;</td>";
+                                        echo "<td id='Space".$row2["SpaceID"]."' class='column".$row2["SpaceColumn"]. " " .$row2["SpaceType"]."'>&nbsp;</td>";
                                       }
                                     }
                                   }else{

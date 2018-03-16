@@ -1,4 +1,4 @@
-<?php require_once("../scripts/php/AP_functions.php"); ?>
+<?php require_once("scripts/php/AP_functions.php"); ?>
 
 <!DOCTYPE html>
 <html>
@@ -50,18 +50,24 @@
 	</style>
     <!-- Main Content -->
 
-	<div id="result"></div>
+    <div class="container">
+		<div id="result"></div>
 		<br /><br /><br />
-		<button onclick="setSpaceType('Available')">Available</button><br />
-		<button onclick="setSpaceType('Unavailable')">Unavailable</button><br />
-		<button onclick="setSpaceType('Disabled')">Disabled</button><br />
-		<button onclick="setSpaceType('Family')">Family</button><br />
-		<button onclick="setSpaceType('Road')">Road</button>
+		
 
 
 		<br/><br/><br/>
 
-		<?php getCarPark(6); ?>
+		<?php getCarPark(1); ?>
+		<br />
+		<label>Mark Spaces As:</label><br/>
+		<button onclick="setSpaceType('Available')">Available</button> 
+		<button onclick="setSpaceType('Unavailable')">Unavailable</button>
+		<button onclick="setSpaceType('Disabled')">Disabled</button>
+		<button onclick="setSpaceType('Family')">Family</button>
+		<button onclick="setSpaceType('Road')">Road</button>
+
+	</div>
 
 		<?php getScripts() ?>
 
@@ -136,7 +142,6 @@
 
 
 			function setSpaceType($spaceType){
-
 				for(var i = 0; i < idList.length; i++){
 					console.log(idList[i]);
 
@@ -145,12 +150,17 @@
 					$("td#"+idList[i]).removeClass("Disabled");
 					$("td#"+idList[i]).removeClass("Family");
 					$("td#"+idList[i]).removeClass("Road");
-
 					$("td#"+idList[i]).addClass($spaceType);
+
+
+					/**************
+					PICK UP FROM HERE
+					UPDATE SPACE WITH NEW SPACETYPE
+					**************/
+
 				}
 				idList = [];
 			}
-
 		</script>
 	</body>
 </html>
