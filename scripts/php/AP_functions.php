@@ -236,6 +236,7 @@
     </script>";
 	}
 
+  //Function that checks whether the userr is logged in or not.
   function loggedIn(){
     if(isset($_SESSION['UserID']) && $_SESSION['UserID'] > 0){
       return true;
@@ -455,6 +456,51 @@
     $db->close();
   }
 
+  function getUserLastName(){
+    global $db;
+    db_connect();
+    $user_id = $_SESSION['UserID'];
+    $sql = "SELECT * FROM user WHERE UserID = $user_id";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        //echo "<div class='col-lg-12'><label>License Plate</label>" . $row["CarLicensePlate"]. "<br/>Car Model - " . $row["CarType"] ."</>";
+        if(empty($row["LastName"])){
+
+          return "";
+
+        }else{
+           return $row["LastName"];
+        }
+      }
+    }
+    $db->close();
+  }
+
+  function getUserEmailAddress(){
+    global $db;
+    db_connect();
+    $user_id = $_SESSION['UserID'];
+    $sql = "SELECT * FROM user WHERE UserID = $user_id";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        //echo "<div class='col-lg-12'><label>License Plate</label>" . $row["CarLicensePlate"]. "<br/>Car Model - " . $row["CarType"] ."</>";
+        if(empty($row["EmailAddress"])){
+
+          return "";
+
+        }else{
+           return $row["EmailAddress"];
+        }
+      }
+    }
+    $db->close();
+  }
 
   function getAllCarParks(){
     global $db;
@@ -485,7 +531,7 @@
 
   function getCarPark($CarParkID){    
         global $db;
-        //db_connect();
+        db_connect();
         if(isset($_SESSION['UserID'])){         
           $user_id = $_SESSION['UserID'];
 
@@ -518,7 +564,7 @@
               while($row = $result->fetch_assoc()) {
               
                 echo "
-                    <div id='floor" . $row["FloorNumber"] . "' class='tab-pane fade'>
+                    <div id='floor" . $row["FloorNumber"] . "' class='tab-pane fade table-responsive'>
 
                       <table id='carPark" . $row["FloorNumber"] . "' class='table'>
                         <thead>";
@@ -566,7 +612,7 @@
                                         echo "<td>hello</td>";
                                       }else{
                                         //todo borders in the grid and icons for cars
-                                        echo "<td id='Space".$row2["SpaceID"]."' class='column".$row2["SpaceColumn"]. " " .$row2["SpaceType"]."'>&nbsp;</td>";
+                                        echo "<td id='Space_".$row2["SpaceID"]."' class='column".$row2["SpaceColumn"]. " " .$row2["SpaceType"]."'>&nbsp;</td>";
                                       }
                                     }
                                   }else{
@@ -638,6 +684,56 @@
           $count = 1;
       while($row = $result->fetch_assoc()) {
         echo "<option value='".$row["SpaceTypeID"]. "'>". $row["SpaceType"] . "</option>";
+      }
+      echo "</option>
+        </select>";
+    }
+    $db->close();
+    
+  }
+
+  function getUserCars(){
+    global $db;
+    db_connect();
+    $user_id = $_SESSION['UserID'];
+    $sql = "SELECT * FROM car WHERE UserID = $user_id";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        //echo "<div class='col-lg-12'><label>License Plate</label>" . $row["CarLicensePlate"]. "<br/>Car Model - " . $row["CarType"] ."</>";
+
+        echo "<tr>
+            <td>".$row["CarLicensePlate"]."</td>
+            <td>".$row["CarType"]."</td>
+            <td><form action='scripts/php/removeCar.php' method='post'>
+            <input type='hidden' name='carLicensePlate' value='".$row["CarLicensePlate"]."'/>
+            <input type='submit' class='btn btn-danger topMargin' value='X'/>
+            </form></td>
+            </tr>";
+
+      }
+    }
+    $db->close();
+    
+  }
+
+  function getUserCarsList(){
+    global $db;
+    db_connect();
+    $user_id = $_SESSION['UserID'];
+    $sql = "SELECT * FROM car WHERE UserID = $user_id";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+      // output data of each row
+
+      echo "<select class='form-control' style='border-radius: 0; min-height: 45px;' id='carSelected' name='carSelected' required>
+          <option value='' selected='true' disabled='disabled'>Choose from list";
+          $count = 1;
+      while($row = $result->fetch_assoc()) {
+        echo "<option value='". $row["CarLicensePlate"] . "'>" .$row["CarType"]. " - " . $row["CarLicensePlate"] . "</option>";
       }
       echo "</option>
         </select>";

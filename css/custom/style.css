@@ -20,6 +20,21 @@ a{
 	color: #fff;
 }
 
+.bookingBackground{
+    background-color: white;
+    border: solid white;
+    border-radius: 5px;
+}
+
+.spaceSelected{
+  color: white;
+  background-color: #2C3E50;
+}
+
+.spaceSelected:hover{
+  color: white !important;
+}
+
 /**
  * The CSS shown here will not be introduced in the Quickstart guide, but shows
  * how you can use CSS to style your Element's container.
