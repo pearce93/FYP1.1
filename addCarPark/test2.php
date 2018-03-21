@@ -61,7 +61,7 @@
 
 		<br/><br/><br/>
 
-		<?php getCarPark(6); ?>
+		<?php getNewCarPark(); ?>
 
 		<?php getScripts() ?>
 

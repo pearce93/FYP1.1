@@ -198,14 +198,33 @@
           ";
 	}
 
+  function getSideBar(){
+    echo "<!-- Sidebar -->
+      <div id=\"sidebar-wrapper\">
+        <ul class=\"sidebar-nav\">
+          <li><a href=\"#\">Account</a></li>          
+          <li><a href=\"#\">Settings</a></li>
+          <li><a href='bookingBreakdowns.php'>Breakdowns</a></li>";
+          $adminCheck = adminCheck(); 
+          if($adminCheck == 1){
+            echo "<li><a href='createUser.php'>Create New User</a></li>"; 
+            echo "<li><a href='createCarPark.php'>Create New Car Park</a></li>";
+            echo "<li><a href='ParkSessionEnding.php'>Reservations</a></li>";
+          }
+          echo "<li><a href=\"logout.php\">Logout</a></li>
+        </ul>
+      </div><!-- End Sidebar -->";
+  }
+  
+
 	function getScripts(){
 		echo "
 
-    <footer class=\"footer\">
+    <!--<footer class=\"footer\">
       <div class=\"container\">
         <span class=\"text-muted\">Place sticky footer content here.</span>
       </div>
-    </footer>
+    </footer>-->
 
     <script src='scripts/js/jquery-3.3.1.min.js'></script>
     <script src='scripts/js/jquery-ui.js'></script>
@@ -233,7 +252,32 @@
         }
         return ok;
       }
-    </script>";
+    </script>
+
+    <!-- Menu Toggle Script -->
+    <script type=\"text/javascript\">
+      $(\"#menu-toggle\").click(function(e){
+        //Stops browser from going to URL
+        e.preventDefault();
+        //Collapases and shows sidebar
+        $(\"#wrapper\").toggleClass(\"sidebarDisplayed\");
+
+        if($(\"#menu-toggle-button\").hasClass(\"fa-arrow-left\")){
+          $(\"#menu-toggle-button\").removeClass(\"fa-arrow-left\");
+          $(\"#menu-toggle-button\").addClass(\"fa-arrow-right\");
+        }else{
+          $(\"#menu-toggle-button\").removeClass(\"fa-arrow-right\");
+          $(\"#menu-toggle-button\").addClass(\"fa-arrow-left\");
+        }
+      });
+
+      
+      $(\"#btnSignIn\").click(function(e){
+        //Stops browser from going to URL
+        e.preventDefault();
+      });
+    </script>
+    ";
 	}
 
   //Function that checks whether the userr is logged in or not.
@@ -427,6 +471,23 @@
     }
   }
 
+  function adminCheck(){
+    global $db;
+    db_connect();
+    $user_id = $_SESSION['UserID'];
+    $sql = "SELECT * FROM user WHERE UserID = $user_id";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        //echo "<div class='col-lg-12'><label>License Plate</label>" . $row["CarLicensePlate"]. "<br/>Car Model - " . $row["CarType"] ."</>";
+        return $row["UserTypeID"];
+      }
+    }
+    $db->close();
+  }
+
   function getUserFirstName(){
     global $db;
     db_connect();
@@ -502,6 +563,65 @@
     $db->close();
   }
 
+  function getUserAddress(){
+    global $db;
+    db_connect();
+    $user_id = $_SESSION['UserID'];
+    $sql = "SELECT Address FROM user WHERE UserID = $user_id";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        //echo "<div class='col-lg-12'><label>License Plate</label>" . $row["CarLicensePlate"]. "<br/>Car Model - " . $row["CarType"] ."</>";
+        if(empty($row["Address"])){
+          echo "<p class='missingInfo'>*Please provide an address*</p>";
+        }else{
+          echo "<tr>
+            <td>".$row["Address"]."</td>
+            </tr>";
+        }       
+      }
+    }else{
+      echo "<tr>
+          <td></td>
+          </tr>";
+    }
+
+    $db->close();
+    
+  }
+
+  function getUserContactNumber(){
+    global $db;
+    db_connect();
+    $user_id = $_SESSION['UserID'];
+    $sql = "SELECT ContactNumber FROM user WHERE UserID = $user_id";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        //echo "<div class='col-lg-12'><label>License Plate</label>" . $row["CarLicensePlate"]. "<br/>Car Model - " . $row["CarType"] ."</>";
+        if(empty($row["ContactNumber"])){
+          echo "<p class='missingInfo'>*Please provide a contact number*</p>";
+        }else{
+          echo "<tr>
+            <td>".$row["ContactNumber"]."</td>
+            </tr>";
+        }       
+      }
+    }else{
+      echo "<tr>
+          <td></td>
+          </tr>";
+    }
+
+    $db->close();
+    
+  }
+
+
   function getAllCarParks(){
     global $db;
     db_connect();
@@ -528,6 +648,7 @@
     }
     $db->close();
   }
+
   function getCarParkName($carParkID){    
     global $db;
     db_connect();
@@ -539,6 +660,114 @@
         return $row["CarParkName"];
       }
     }
+  }
+
+  function getNewCarPark(){    
+        global $db;
+        db_connect();
+        if(isset($_SESSION['UserID'])){
+
+          $user_id = $_SESSION['UserID'];
+
+          $sql = "SELECT MAX(CarParkID) AS CarParkID FROM carpark";
+          $result = $db->query($sql); 
+          if ($result->num_rows > 0) {
+            // output data of each row
+              //Looping to find the amount floors in the carPark
+            while($row = $result->fetch_assoc()) {
+              $CarParkID = $row["CarParkID"];
+           
+
+              //Getting Each floor depending on the carParkID
+              $sql = "SELECT DISTINCT FloorNumber FROM space WHERE CarParkID = $CarParkID ORDER BY FloorNumber";
+              $result = $db->query($sql); 
+              if ($result->num_rows > 0) {
+                // output data of each row
+                echo "
+                    <ul class='nav nav-tabs'>";
+                  //Looping to find the amount floors in the carPark
+                while($row = $result->fetch_assoc()) {
+                  echo "<li><a data-toggle='tab' href='#floor".$row["FloorNumber"]."'>Floor ".$row["FloorNumber"]."</a></li>";
+                };
+                echo "</ul>";
+                //Turning the amount of floors into different tabs with different content for each floor.
+                $sql = "SELECT DISTINCT FloorNumber FROM space WHERE CarParkID = $CarParkID";
+                $result = $db->query($sql); 
+                if($result->num_rows > 0) {
+                  echo "<div class='tab-content'>
+                    <div id='floor" . $row["FloorNumber"] . "' class='tab-pane active in home'>
+                      
+                    </div>";
+                  while($row = $result->fetch_assoc()) {
+                  
+                    echo "
+                        <div id='floor" . $row["FloorNumber"] . "' class='tab-pane fade table-responsive'>
+                          <table id='carPark" . $row["FloorNumber"] . "' class='table'>
+                            <thead>";
+                            $sqlTH = "SELECT DISTINCT SpaceColumn FROM space WHERE FloorNumber = " . $row["FloorNumber"] . " AND CarParkID = $CarParkID";
+                            $resultTH = $db->query($sqlTH);
+                            if($resultTH->num_rows > 0){
+                              while($rowTH = $resultTH->fetch_assoc()){
+                                if(empty($rowTH["SpaceColumn"])){
+                                  echo "Error";
+                                }else{
+                                  echo "<th></th>";
+                                }
+                              }
+                            }else{
+                              echo "here";
+                            }                 
+                            echo "</thead>
+                            <tbody class='text-center'>";
+                              
+                              //TODO: loop TD's so we can pivot the parking spaces.
+                              $sql1 = "SELECT DISTINCT SpaceRow FROM space WHERE CarParkID = $CarParkID AND FloorNumber = " . $row["FloorNumber"] ."";
+                              
+                              $result1 = $db->query($sql1); 
+                              if($result1->num_rows > 0) {
+                                while($row1 = $result1->fetch_assoc()){
+                                  if(empty($row1["SpaceRow"])){
+                                    echo "<td>hello</td>";
+                                  }else{
+                                    echo "<tr id='carPark" . $row["FloorNumber"] . "row". $row1["SpaceRow"] ."'>";
+                                      $sql2 = "SELECT DISTINCT `SpaceID`, `CarParkID`, `FloorNumber`, `SpaceRow`, `SpaceColumn`,`space`.SpaceTypeID, `spacetype`.`SpaceType` FROM `space` inner JOIN `spacetype` ON `space`.`SpaceTypeID` = `spacetype`.`SpaceTypeID` WHERE CarParkID = $CarParkID AND FloorNumber = " . $row["FloorNumber"] ." AND `SpaceRow` = ". $row1["SpaceRow"] . " ORDER BY SpaceID";
+                                      //var_dump($sql2);
+                                      $result2 = $db->query($sql2); 
+                                      if($result2->num_rows > 0) {
+                                        while ($row2 = $result2->fetch_assoc()) {
+                                          if(empty($row2["SpaceColumn"])){
+                                            echo "<td>hello</td>";
+                                          }else{
+                                            //todo borders in the grid and icons for cars
+                                            echo "<td id='Space_".$row2["SpaceID"]."' class='column".$row2["SpaceColumn"]. " " .$row2["SpaceType"]."'>&nbsp;</td>";
+                                          }
+                                        }
+                                      }else{
+                                        echo "error";
+                                      }
+                                    echo "</tr>";
+                                  }
+                                }
+                              }else{
+                                echo "<td>world</td>";
+                              }
+                              echo "</tr>
+                            </tbody>
+                          </table>
+                        </div>";
+      
+                  };
+                  echo "</div>";
+                }
+              }else{
+                echo "Error";
+              }
+              $db->close();
+            }
+          }
+        }else{
+          echo "Log in";
+        }
   }
 
   function getCarPark($CarParkID, $startDate, $endDate){    
@@ -777,5 +1006,33 @@
     }
     $db->close();
     
+  }
+
+  function BookingHistory(){
+    global $db;
+    db_connect();
+    $user_id = $_SESSION['UserID'];
+    $sql = "SELECT * FROM reservation LEFT JOIN car ON reservation.CarID = car.CarID WHERE car.UserID = $user_id";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        //echo "<div class='col-lg-12'><label>License Plate</label>" . $row["CarLicensePlate"]. "<br/>Car Model - " . $row["CarType"] ."</>";
+        getCarParkName($row["CarParkID"]);
+        echo "
+        <tr>
+            <td>"; echo $row["CarID"]; echo "</td>
+            <td>"; echo getCarParkName($row["CarParkID"]); echo "</td>
+            <td>"; echo $row["SpaceID"]; echo "</td>
+            <td>"; echo $row["ReservationDate"]; echo "</td>
+            <td>"; echo $row["EnterDate"]; echo "</td>
+            <td>"; echo $row["ExitDate"]; echo "</td>
+            <td>"; echo $row["Duration"]; echo "</td>
+            <td>"; echo $row["Price"]; echo "</td>
+          </tr>";
+      }
+    }
+    $db->close();
   }
 ?>

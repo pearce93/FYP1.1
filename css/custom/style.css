@@ -40,7 +40,9 @@ a{
   color: yellow;
 }
 
-
+.navbar-inverse{
+  background-image: linear-gradient(to bottom,#0f2d3c 0,#000 100%) !important;
+}
 
 
 
