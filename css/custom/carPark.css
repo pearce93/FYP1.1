@@ -102,6 +102,74 @@
     cursor: pointer;
  }
 
+ .Unavailable {
+    position: relative;
+    border-left: solid;
+    background-color: #a50000d4;
+    color: black;
+  width: 4px;
+}
+
+.Unavailable:last-of-type{
+  border-right: solid;
+}
+
+.Unavailable:before {
+    content: "\f1b9";  /* this is your text. You can also use UTF-8 character codes as I do here */
+    font-family: FontAwesome;
+    left:-5px;
+    top:0;
+ }
+
+.Disabled {
+  position:relative;
+  border-left: solid;
+  width: 4px;
+}
+
+.Disabled:last-of-type{
+  border-right: solid;
+}
+
+.Disabled:before {
+    content: "\f193";  /* this is your text. You can also use UTF-8 character codes as I do here */
+    font-family: FontAwesome;
+    left:-5px;
+    top:0;
+ }
+
+ .Disabled:hover {
+  border-color: black;
+    color: #1275BB;
+    cursor: pointer;
+ }
+
+.Family {
+  position:relative;
+  border-left: solid;
+  width: 4px;
+}
+
+.Family:last-of-type{
+  border-right: solid;
+}
+
+.Family:before {
+    content: "\f1b9";  /* this is your text. You can also use UTF-8 character codes as I do here */
+    font-family: FontAwesome;
+    left:-5px;
+    top:0;
+ }
+
+ .Family:hover {
+    border-color: black;
+    color: #1275BB;
+    cursor: pointer;
+ }
+
+
+
+
 .Road {
     position:relative;
     background-color: grey;

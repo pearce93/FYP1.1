@@ -1,4 +1,8 @@
-<?php include_once("scripts/php/AP_functions.php"); ?>
+<?php include_once("scripts/php/AP_functions.php"); 
+
+	$CarParkID = $_GET["cp"];
+
+?>
 <!DOCTYPE html>
 <html>
   <?php getHead(); ?>
@@ -136,6 +140,7 @@
 						<div id=\"collapseThree\" class=\"panel-collapse collapse in\">
 							<div class=\"panel-body\">
 								<form id=\"notRegisteredBooking\" class=\"modal-content animate bookingForm\" action=\"unauthenticatedReservation.php\" method=\"post\">
+										<input type='hidden' name='carParkID' value='"; echo $CarParkID; echo "' />
 									<div class=\"row\">
 										<div class=\"col-md-offset-2 col-md-8 col-xs-12\">
 											<div class=\"modalContainer\">
@@ -149,66 +154,64 @@
 															</ul>
 														<p>
 													</div>
-													<form method=\"post\" action=\"#\">
-														<div id=\"dateTimePair\" class=\"row\">
-															<div class=\"col-xs-1\">
-																<div class=\"bookingIcons\">
-																	<i class=\"fa fa-user\"></i>
-																</div>
-															</div>
-															<div class=\"col-xs-11\">
-																<input type=\"text\" id=\"firstName\" name=\"firstName\" class=\"\" placeholder=\"First Name\" required=\"\">
-															</div>
-															<div class=\"col-xs-1\">
-																<div class=\"bookingIcons\">
-																	<i class=\"fa fa-user\"></i>
-																</div>
-															</div>
-															<div class=\"col-xs-11\">
-																<input type=\"text\" id=\"lastName\" name=\"lastName\" class=\"\" placeholder=\"Last Name\" required=\"\">
-															</div>
-															<div class=\"col-xs-1\">
-																<div class=\"bookingIcons\">
-																	<i class=\"fa fa-at\"></i>
-																</div>
-															</div>
-															<div class=\"col-xs-11\">
-																<input type=\"text\" id=\"email\" name=\"email\" class=\"\" placeholder=\"Email Address\" required=\"\">
-															</div>
-															<div class=\"col-xs-1\">
-																<div class=\"bookingIcons\">
-																	<i class=\"fa fa-calendar\"></i>
-																</div>
-															</div>
-															<div class=\"col-xs-11\">
-																<input type=\"text\" id=\"inStartDate\" name=\"inStartDate\" class=\"date start\" placeholder=\"Choose Arrival Date\" required=\"\">
-															</div>
-															<div class=\"col-xs-1\">
-																<div class=\"bookingIcons\">
-																	<i class=\"fa fa-calendar\"></i>
-																</div>
-															</div>
-															<div class=\"col-xs-11\">
-																<input type=\"text\" id=\"inEndDate\" name=\"inEndDate\" placeholder=\"Choose Departure Date\" class=\"date end\" required=\"\">
-															</div>
-															<div class=\"col-xs-1\">
-																<div class=\"bookingIcons\">
-																	<i id=\"spaceTypeIcon\" class=\"fa fa-car\"></i>
-																</div>
-															</div>
-															<div class=\"col-xs-11\">
-																<div class=\"form-group\"> ";  
-																	 getSpaceTypeList(); 
-																 echo "</div>
-															</div>														
-															
-														</div>
-														<div class=\"row\">
-															<div class=\"col-xs-12\">
-																<input type=\"submit\" name=\"submit\" class=\"btn btn-success btn-block\">
+													<div id=\"dateTimePair\" class=\"row\">
+														<div class=\"col-xs-1\">
+															<div class=\"bookingIcons\">
+																<i class=\"fa fa-user\"></i>
 															</div>
 														</div>
-													</form>
+														<div class=\"col-xs-11\">
+															<input type=\"text\" id=\"firstName\" name=\"firstName\" class=\"\" placeholder=\"First Name\" required=\"\">
+														</div>
+														<div class=\"col-xs-1\">
+															<div class=\"bookingIcons\">
+																<i class=\"fa fa-user\"></i>
+															</div>
+														</div>
+														<div class=\"col-xs-11\">
+															<input type=\"text\" id=\"lastName\" name=\"lastName\" class=\"\" placeholder=\"Last Name\" required=\"\">
+														</div>
+														<div class=\"col-xs-1\">
+															<div class=\"bookingIcons\">
+																<i class=\"fa fa-at\"></i>
+															</div>
+														</div>
+														<div class=\"col-xs-11\">
+															<input type=\"text\" id=\"email\" name=\"email\" class=\"\" placeholder=\"Email Address\" required=\"\">
+														</div>
+														<div class=\"col-xs-1\">
+															<div class=\"bookingIcons\">
+																<i class=\"fa fa-calendar\"></i>
+															</div>
+														</div>
+														<div class=\"col-xs-11\">
+															<input type=\"text\" id=\"inStartDate\" name=\"inStartDate\" class=\"date start\" placeholder=\"Choose Arrival Date\" required=\"\">
+														</div>
+														<div class=\"col-xs-1\">
+															<div class=\"bookingIcons\">
+																<i class=\"fa fa-calendar\"></i>
+															</div>
+														</div>
+														<div class=\"col-xs-11\">
+															<input type=\"text\" id=\"inEndDate\" name=\"inEndDate\" placeholder=\"Choose Departure Date\" class=\"date end\" required=\"\">
+														</div>
+														<div class=\"col-xs-1\">
+															<div class=\"bookingIcons\">
+																<i id=\"spaceTypeIcon\" class=\"fa fa-car\"></i>
+															</div>
+														</div>
+														<div class=\"col-xs-11\">
+															<div class=\"form-group\"> ";  
+																 getSpaceTypeList(); 
+															 echo "</div>
+														</div>														
+														
+													</div>
+													<div class=\"row\">
+														<div class=\"col-xs-12\">
+															<input type=\"submit\" name=\"submit\" class=\"btn btn-success btn-block\">
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -235,6 +238,7 @@
 								<div class=\"row\">
 
 									<form method=\"post\" action=\"bookParkingSpace.php\">
+									<input type='hidden' name='carParkID' value='"; echo $CarParkID; echo "' />
 										<div id=\"dateTimePair\">
 											<div class=\"row\">
 												<div class=\"col-xs-1\">

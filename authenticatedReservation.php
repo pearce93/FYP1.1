@@ -1,13 +1,14 @@
 <?php 
 	include_once("scripts/php/AP_functions.php");
 
-	$startDate = date ("Y-m-d H:i:s", strtotime($_POST["authenticatedInStartDate"])); 
-	$endDate = date ("Y-m-d H:i:s", strtotime($_POST["authenticatedInEndDate"])); 
+	$startDate = $_POST["authenticatedInStartDate"]; 
+	$endDate = $_POST["authenticatedInEndDate"]; 
 	$SpaceID = $_POST["spaceSelected"];
 	$CarSelected = $_POST["carSelected"];
 	$FirstName = getUserFirstName();
 	$LastName = getUserLastName();
 	$EmailAddress = getUserEmailAddress();
+	$CarParkID = $_POST["CarParkID"];
 
 	$carSpaceArray = array();
 	$spaceList = array();
@@ -15,9 +16,9 @@
 	global $db;
 	db_connect();
 
+	$CarParkName = getCarParkName($CarParkID);
 
 	//CarID needs to be set to 7 as an anonymous user. TODO: Change default ID to 0
-	$CarID = 0;
 
 	//Assigning first available space to $SpaceID
 		//Filtering between start and end date to find out what spaces are free on those dates.
@@ -28,7 +29,6 @@
 		}
 
 	//CarParkID = the value that we have recieved from the function call.
-	$CarParkID = 1;
 
 	//Filtering between start and end date to find out what spaces are free on those dates.
 	$sql = "SELECT * FROM `reservation` WHERE (EnterDate >= '$startDate' AND ExitDate <= '$endDate') OR (EnterDate <= '$endDate' AND ExitDate >= '$endDate')";
@@ -130,6 +130,12 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
+				<h3>Car Park - <?php echo $CarParkName; ?></h3>
+			</div>
+			<div class="col-xs-12">
+				<h3>Space ID - <?php echo $SpaceID; ?></h3>
+			</div>
+			<div class="col-xs-12">
 				<h3>Start of Reservation - <?php echo date_format(new DateTime($startDate), 'l jS F Y - H:i:s'); ?></h3>
 			</div>
 			<div class="col-xs-12">
@@ -138,7 +144,7 @@
 			<div class="col-xs-12">
 				<h3>Total Hours - <?php echo round($hours, 2); ?></h3>
 				<h3>Cost Per Hour - <?php echo "£".round($carParkRate,2); ?></h3>
-				<h2>Total - <?php echo "£".round($Price, 2); ?></h2>
+				<h2>Total - <?php echo "£".round($Total, 2); ?><span class="subText"> *Discount Included in Price*</span></h2>
 			</div>
 
 			
@@ -195,6 +201,7 @@
 			$('#datetimepicker2').data("DateTimePicker").minDate(e.date);
 		});
 	</script>
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

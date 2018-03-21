@@ -518,7 +518,7 @@
           <img class='img-thumbnail' src='img/carParks/" . $row["CarParkCode"] . ".jpg' alt='An Image of a car park/car park building' />
           <p class='carParktitle'>" . $row["CarParkName"] . "</p>
           <div class='carParkoverlay'></div>
-          <div class='carParkbutton'><a class='btn btn-primary' href='" . $row["CarParkCode"]. ".php'>BOOK</a></div>
+          <div class='carParkbutton'><a class='btn btn-primary' href='CarPark.php?cp=" . $row["CarParkID"] . "'>BOOK</a></div>
         </div>
       </div>";
 
@@ -528,12 +528,36 @@
     }
     $db->close();
   }
+  function getCarParkName($carParkID){    
+    global $db;
+    db_connect();
+    $sql = "SELECT * FROM CarPark WHERE CarParkID = $carParkID";
+    $result = $db->query($sql); 
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        # code...
+        return $row["CarParkName"];
+      }
+    }
+  }
 
-  function getCarPark($CarParkID){    
+  function getCarPark($CarParkID, $startDate, $endDate){    
         global $db;
         db_connect();
+        $unavailableSpaces = array();
+
         if(isset($_SESSION['UserID'])){         
           $user_id = $_SESSION['UserID'];
+
+          $sql = "SELECT * FROM `reservation` WHERE (EnterDate < '$startDate' AND ExitDate > '$startDate') OR (EnterDate > '$startDate' AND ExitDate < '$endDate') OR (EnterDate < '$endDate' AND ExitDate > '$endDate') OR (EnterDate < '$startDate' AND ExitDate > '$endDate') OR (EnterDate = '$startDate' AND ExitDate = '$endDate')";
+          $result = $db->query($sql); 
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+              # code...
+              array_push($unavailableSpaces, $row["SpaceID"]);
+            }
+          }
+          $jsUS = json_encode($unavailableSpaces);
 
           //Getting Each floor depending on the carParkID
           $sql = "SELECT DISTINCT FloorNumber FROM space WHERE CarParkID = $CarParkID ORDER BY FloorNumber";
@@ -633,7 +657,20 @@
                     </div>";
   
               };
-              echo "</div>";
+              echo "</div>
+                    <script>             
+
+                      var data = $jsUS;
+                      for (var x in data) {
+                      //data[x].dt;
+                      //data[x].number;
+
+                        var id = 'Space_' + data[x];
+                        $('#'+id).removeClass('Available');
+                        $('#'+id).addClass('Unavailable');
+                      }
+                      </script>";
+              
             }
 
           }else{

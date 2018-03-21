@@ -7,6 +7,7 @@
 	$FirstName = $_POST["firstName"];
 	$LastName = $_POST["lastName"];
 	$EmailAddress = $_POST["email"];
+	$CarParkID = $_POST["carParkID"];
 	
 	$carSpaceArray = array();
 	$spaceList = array();
@@ -18,7 +19,9 @@
 	//CarID needs to be set to 7 as an anonymous user. TODO: Change default ID to 0
 	$CarID = 7;
 	//CarParkID = the value that we have recieved from the function call.
-	$CarParkID = 1;
+	echo "$CarParkID";
+	die();
+	$CarParkName = getCarParkName($CarParkID);
 
 	//Filtering between start and end date to find out what spaces are free on those dates.
 	$sql = "SELECT * FROM `reservation` WHERE (EnterDate >= '$startDate' AND ExitDate <= '$endDate') OR (EnterDate <= '$endDate' AND ExitDate >= '$endDate')";
@@ -151,6 +154,12 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-xs-12">
+				<h3>Car Park - <?php echo $CarParkName; ?></h3>
+			</div>
+			<div class="col-xs-12">
+				<h3>Space ID - <?php echo $SpaceID; ?></h3>
+			</div>
 			<div class="col-xs-12">
 				<h3>Start of Reservation - <?php echo date_format(new DateTime($startDate), 'l jS F Y - H:i:s'); ?></h3>
 			</div>

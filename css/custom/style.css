@@ -35,6 +35,15 @@ a{
   color: white !important;
 }
 
+.subText{
+  font-size: 14px;
+  color: yellow;
+}
+
+
+
+
+
 /**
  * The CSS shown here will not be introduced in the Quickstart guide, but shows
  * how you can use CSS to style your Element's container.
