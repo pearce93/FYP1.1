@@ -26,7 +26,7 @@
 	$ParkingRateID = $_POST["ParkingRateID"];
 	$Price = $_POST["Price"];
 	$token = $_POST["stripeToken"];
-
+	$SpaceTypeID1 = getSpaceTypefromSpaceID($SpaceID);
 
 	echo $token;
 	
@@ -59,7 +59,7 @@
 	$ExitDate = $POST["ExitDate"];
 	$Duration = $POST["Duration"];
 	$ParkingRateID = $POST["ParkingRateID"];
-	$SpaceTypeID = 0;
+	$SpaceTypeID = $SpaceTypeID1;
 	$Price = $POST["Price"];
 	$token = $POST["stripeToken"];
 

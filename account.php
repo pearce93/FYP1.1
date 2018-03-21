@@ -308,7 +308,8 @@
         $('#bookingHistory').DataTable({
           "searching": true,
           "pageLength": 50,
-          "paging": true
+          "paging": true,
+          "order": [ 3, 'desc' ]
         });
       });
     </script>

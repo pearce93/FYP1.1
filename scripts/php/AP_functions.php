@@ -621,6 +621,36 @@
     
   }
 
+  function getSpaceTypefromSpaceID($spaceID){
+    global $db;
+    db_connect();
+    $user_id = $_SESSION['UserID'];
+    $sql = "SELECT SpaceTypeID FROM Space WHERE SpaceID = $spaceID";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        return (int)$row["SpaceTypeID"];
+      }
+    }
+  }
+
+  function getCarfromCarID($CarID){
+    global $db;
+    db_connect();
+    $user_id = $_SESSION['UserID'];
+    $sql = "SELECT * FROM Car WHERE CarID = $CarID";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        return $row["CarType"] . " - " . $row["CarLicensePlate"];
+      }
+    }
+  }
+
 
   function getAllCarParks(){
     global $db;
@@ -1020,16 +1050,17 @@
       while($row = $result->fetch_assoc()) {
         //echo "<div class='col-lg-12'><label>License Plate</label>" . $row["CarLicensePlate"]. "<br/>Car Model - " . $row["CarType"] ."</>";
         getCarParkName($row["CarParkID"]);
+        
         echo "
         <tr>
-            <td>"; echo $row["CarID"]; echo "</td>
+            <td>"; echo getCarfromCarID($row["CarID"]); echo "</td>
             <td>"; echo getCarParkName($row["CarParkID"]); echo "</td>
             <td>"; echo $row["SpaceID"]; echo "</td>
             <td>"; echo $row["ReservationDate"]; echo "</td>
             <td>"; echo $row["EnterDate"]; echo "</td>
             <td>"; echo $row["ExitDate"]; echo "</td>
-            <td>"; echo $row["Duration"]; echo "</td>
-            <td>"; echo $row["Price"]; echo "</td>
+            <td>"; echo $row["Duration"] . " Hours"; echo "</td>
+            <td>"; echo "£".$row["Price"]/100; echo "</td>
           </tr>";
       }
     }
