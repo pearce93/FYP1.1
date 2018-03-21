@@ -1005,7 +1005,7 @@
             <td>".$row["CarType"]."</td>
             <td><form action='scripts/php/removeCar.php' method='post'>
             <input type='hidden' name='carLicensePlate' value='".$row["CarLicensePlate"]."'/>
-            <input type='submit' class='btn btn-danger topMargin' value='X'/>
+            <input type='submit' class='btn btn-danger' value='X'/>
             </form></td>
             </tr>";
 
@@ -1050,7 +1050,7 @@
       while($row = $result->fetch_assoc()) {
         //echo "<div class='col-lg-12'><label>License Plate</label>" . $row["CarLicensePlate"]. "<br/>Car Model - " . $row["CarType"] ."</>";
         getCarParkName($row["CarParkID"]);
-        
+
         echo "
         <tr>
             <td>"; echo getCarfromCarID($row["CarID"]); echo "</td>

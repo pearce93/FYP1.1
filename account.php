@@ -29,7 +29,7 @@
                       </div>
                       <div class="modal-body">
                         
-                          <div class="row topMargin">
+                          <div class="row">
                             <div class="col-lg-offset-2 col-lg-4">
                               <label>First Name: </label>
                             </div>
@@ -38,7 +38,7 @@
                             </div>
                           </div>
 
-                          <div class="row topMargin bottomMargin">
+                          <div class="row bottomMargin">
                             <div class="col-lg-offset-2 col-lg-4">
                               <label>Last Name: </label>
                             </div>
@@ -47,7 +47,7 @@
                             </div>
                           </div>
 
-                          <div class="row topMargin bottomMargin">
+                          <div class="row bottomMargin">
                             <div class="col-lg-offset-2 col-lg-4">
                               <label>Address: </label>
                             </div>
@@ -56,7 +56,7 @@
                             </div>
                           </div>
 
-                          <div class="row topMargin bottomMargin">
+                          <div class="row bottomMargin">
                             <div class="col-lg-offset-2 col-lg-4">
                               <label>Contact Number: </label>
                             </div>
@@ -96,7 +96,7 @@
                       </div>
                       <div class="modal-body">
                         
-                          <div class="row topMargin">
+                          <div class="row">
                             <div class="col-lg-offset-1 col-lg-4">
                               <label>Car License Plate: </label>
                             </div>
@@ -105,7 +105,7 @@
                             </div>
                           </div>
 
-                          <div class="row topMargin bottomMargin">
+                          <div class="row bottomMargin">
                             <div class="col-lg-offset-2 col-lg-3">
                               <label>Car Model: </label>
                             </div>
@@ -133,15 +133,15 @@
 
           <div class="row">
             <div class="col-xs-12">
-              <div class="container topMargin">
+              <div class="container">
                 <div class="row">
                   <div class="col-lg-9">
                     <div class="row">
                       <div class="col-lg-11 registrationBox bottomMargin">
-                        <h1 class="text-center topMargin">Personal Information</h1>
+                        <h1 class="text-center">Personal Information</h1>
                         <hr>
 
-                        <div class="row topMargin">
+                        <div class="row">
                           <div class="col-lg-offset-2 col-lg-3">
                             <label>First Name: </label>
                           </div>
@@ -150,7 +150,7 @@
                           </div>
                         </div>
 
-                        <div class="row topMargin bottomMargin">
+                        <div class="row bottomMargin">
                           <div class="col-lg-offset-2 col-lg-3">
                             <label>Last Name: </label>
                           </div>
@@ -159,7 +159,7 @@
                           </div>
                         </div>
 
-                        <div class="row topMargin bottomMargin">
+                        <div class="row bottomMargin">
                           <div class="col-lg-offset-2 col-lg-3">
                             <label>Address: </label>
                           </div>
@@ -168,7 +168,7 @@
                           </div>
                         </div>
 
-                        <div class="row topMargin bottomMargin">
+                        <div class="row bottomMargin">
                           <div class="col-lg-offset-2 col-lg-3">
                             <label>Contact Number: </label>
                           </div>
@@ -177,7 +177,7 @@
                           </div>
                         </div>
                         <hr/>
-                        <div class="row topMargin bottomMargin">
+                        <div class="row bottomMargin">
                           <div class="col-lg-offset-10 col-lg-2">
                             <a href="" data-toggle="modal" data-target="#updatePersonalDetails">Update</a>
                           </div>
@@ -187,22 +187,22 @@
                   </div>
                   <div class="col-lg-3">
                     <div class="row registrationBox">
-                      <div class="col-lg-12">
-                        <h1 class="text-center topMargin bottomMargin">Cars</h1>
+                        <h1 class="text-center bottomMargin">Cars</h1>
+                      <div class="col-lg-12" style="max-height: 260px; overflow-y: scroll;">
                         <hr>            
                         <table class="greyGridTable">
                           <tr>
-                            <th>License Plate</th>
-                            <th>Model</th>
+                            <th class="text-center">License Plate</th>
+                            <th class="text-center">Model</th>
                             <th></th>
                           </tr>
                           <?php getUserCars() ?>
                         </table>
 
                         <hr/>
-                        <div class="row topMargin bottomMargin">
+                        <div class="row bottomMargin">
                           <div class="col-lg-offset-6 col-lg-6">
-                            <a href="" data-toggle="modal" data-target="#addCar">Add a Car</a>
+                            <a href="" data-toggle="modal" data-target="#addCar">Add a Car</a><br/><br/>
                           </div>
                         </div>
                       </div>
@@ -210,11 +210,11 @@
                   </div>
                 </div>
 
-                <div class="row topMargin">
+                <div class="row">
                     <div class="col-lg-12">
                       <div class="row">
                         <div class="col-lg-12 registrationBox">
-                          <h1 class="text-center topMargin">Booking History</h1>
+                          <h1 class="text-center">Booking History</h1>
                           <hr/>
                           
                           <div class="col-lg-12 bottomMargin">
@@ -245,46 +245,7 @@
                           </div>
                         </div>
                       </div>
-
-                      <div class="row topMargin">
-                        <div class="col-lg-12 registrationBox">
-                          <h1 class="text-center topMargin">Favourites</h1>
-                          <hr/>
-                          
-                          <div class="col-lg-12 bottomMargin">
-                            <div class="table-responsive">          
-                              <table class="table">
-                                <thead>
-                                  <tr>
-                                    <th>#</th>
-                                    <th>Date</th>
-                                    <th>Car Park</th>
-                                    <th>Floor</th>                  
-                                    <th>Space</th>
-                                    <th>Car Details</th>
-                                    <th>Times Visited</th>
-                                  </tr>
-                                </thead>
-                                <tbody>                      
-                                  <tr>
-                                    <td>1</td>
-                                    <td>12/01/2018</td>
-                                    <td>Castle Court</td>
-                                    <td>3</td>
-                                    <td>173</td>
-                                    <td>MEZ 7024 - Ford Focus</td>
-                                    <td>14</td>
-                                    <td><img src="img/">
-                                  </tr>                      
-                                </tbody>
-                              </table>
-                              </div>
-                            <hr/>
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
+                    </div>                  
                 </div>        
               </div>
             </div>

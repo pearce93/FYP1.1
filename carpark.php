@@ -235,54 +235,51 @@
 					<div class=\"row\">
 						<div class=\"col-xs-12 col-md-4\">
 							<div class=\"form-group\">
-								<div class=\"row\">
-
-									<form method=\"post\" action=\"bookParkingSpace.php\">
-									<input type='hidden' name='carParkID' value='"; echo $CarParkID; echo "' />
-										<div id=\"dateTimePair\">
-											<div class=\"row\">
-												<div class=\"col-xs-1\">
-													<div class=\"bookingIcons\">
-														<i class=\"fa fa-car\"></i>
-													</div>
-												</div>															
-												<div class=\"col-xs-offset-1 col-xs-10\">";
-												getUserCarsList(); 
-									echo "
-											</div>
-											</div>										
-
-											<div class=\"row\">
-												<div class=\"col-xs-1\">
-													<div class=\"bookingIcons\">
-														<i class=\"fa fa-calendar\"></i>
-													</div>
-												</div>
-												<div class=\"col-xs-offset-1 col-xs-10\">
-													<input type=\"text\" id=\"authenticatedInStartDate\" name=\"authenticatedInStartDate\" class=\"date start\" placeholder=\"Choose Arrival Date\" required=\"\">
-												</div>
-											</div>
-											
-											<div class=\"row\">
-												<div class=\"col-xs-1\">
-													<div class=\"bookingIcons\">
-														<i class=\"fa fa-calendar\"></i>
-													</div>
-												</div>
-												<div class=\"col-xs-offset-1 col-xs-10\">
-													<input type=\"text\" id=\"authenticatedInEndDate\" name=\"authenticatedInEndDate\" placeholder=\"Choose Departure Date\" class=\"date end\" required=\"\">
-												</div>
-											</div>
-
-										
-										</div>
+								<form method=\"post\" action=\"bookParkingSpace.php\">
+								<input type='hidden' name='carParkID' value='"; echo $CarParkID; echo "' />
+									<div id=\"dateTimePair\">
 										<div class=\"row\">
-											<div class=\"col-xs-12\">
-												<input type=\"submit\" name=\"submit\" class=\"btn btn-success btn-block\">
+											<div class=\"col-xs-1\">
+												<div class=\"bookingIcons\">
+													<i class=\"fa fa-car\"></i>
+												</div>
+											</div>															
+											<div class=\"col-xs-offset-1 col-xs-10\">";
+											getUserCarsList(); 
+								echo "
+										</div>
+										</div>										
+
+										<div class=\"row\">
+											<div class=\"col-xs-1\">
+												<div class=\"bookingIcons\">
+													<i class=\"fa fa-calendar\"></i>
+												</div>
+											</div>
+											<div class=\"col-xs-offset-1 col-xs-10\">
+												<input type=\"text\" id=\"authenticatedInStartDate\" name=\"authenticatedInStartDate\" class=\"date start\" placeholder=\"Choose Arrival Date\" required=\"\">
 											</div>
 										</div>
-									</form>
-								</div>
+										
+										<div class=\"row\">
+											<div class=\"col-xs-1\">
+												<div class=\"bookingIcons\">
+													<i class=\"fa fa-calendar\"></i>
+												</div>
+											</div>
+											<div class=\"col-xs-offset-1 col-xs-10\">
+												<input type=\"text\" id=\"authenticatedInEndDate\" name=\"authenticatedInEndDate\" placeholder=\"Choose Departure Date\" class=\"date end\" required=\"\">
+											</div>
+										</div>
+
+									
+									</div>
+									<div class=\"row\">
+										<div class=\"col-xs-12\">
+											<input type=\"submit\" name=\"submit\" class=\"btn btn-success btn-block\">
+										</div>
+									</div>
+								</form>								
 							</div>
 						</div>
 					</div>
