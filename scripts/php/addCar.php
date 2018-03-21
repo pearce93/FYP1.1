@@ -32,29 +32,20 @@
 			db_connect();
 			$user_id = $_SESSION['UserID'];
 
-			$sql = "SELECT * FROM user WHERE UserID = $user_id";
-			$result = $db->query($sql);
+			$query = "INSERT INTO car (UserID, CarLicensePlate, CarType) VALUES (?, ?, ?)";
 
-			if ($result->num_rows > 0) {
-				// output data of each row
-				while($row = $result->fetch_assoc()) {
-					//echo "<div class='col-lg-12'><label>License Plate</label>" . $row["CarLicensePlate"]. "<br/>Car Model - " . $row["CarType"] ."</>";
-
-					echo "<tr>
-							<td>".$row["FirstName"]."</td>
-							<td>".$row["LastName"]."</td>
-							<td>".$row["Address"]."</td>
-							<td>".$row["ContactNumber"]."</td>							
-							</tr>";
-
-
-
-				}
-			}
+			$stmt = $db->prepare($query);
+			$stmt->bind_param('iss', $user_id, $licensePlate, $carModel);
+			if(false === $stmt){
+				echo "Prepare Failed";
+				exit;
+			}   
+			$stmt->execute();
 			
 			//Closing the Database connection.
 			$db->close();
 			
+			header("Location: ../../account.php");
 		}
 	}
 ?>
