@@ -79,6 +79,25 @@ table.greyGridTable tfoot td {
   font-size: 14px;
 }
 
+.favourite{
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  font-size: 35px;
+  z-index: 2;
+  color: yellow;
+  text-shadow: 1px 1px black;
+}
+
+.favourite:hover{
+  cursor: pointer;
+}
+
+
+.sideBarSeperation{
+  border-bottom: solid 1px white;
+}
+
 
 /**
  * The CSS shown here will not be introduced in the Quickstart guide, but shows

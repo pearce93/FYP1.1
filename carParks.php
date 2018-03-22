@@ -34,5 +34,12 @@
 			});
 		});
 	</script>
+
+	<!-- TODO: Add favourite car park functionality -->
+	<!-- <script type="text/javascript">
+		$(".heart.fa").click(function() {
+			$(this).toggleClass("fa-heart fa-heart-o");
+		});
+	</script> -->
   </body>
 </html>

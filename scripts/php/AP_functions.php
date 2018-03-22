@@ -202,16 +202,17 @@
     echo "<!-- Sidebar -->
       <div id=\"sidebar-wrapper\">
         <ul class=\"sidebar-nav\">
-          <li><a href=\"#\">Account</a></li>          
-          <li><a href=\"#\">Settings</a></li>
-          <li><a href='bookingBreakdowns.php'>Breakdowns</a></li>";
+          <li class='sideBarSeperation'><a href=\"#\">Account</a></li>
+
+          <li class='sideBarSeperation'><a href=\"#\">Settings</a></li>
+          <li class='sideBarSeperation'><a href='bookingBreakdowns.php'>Breakdowns</a></li>";
           $adminCheck = adminCheck(); 
           if($adminCheck == 1){
-            echo "<li><a href='createUser.php'>Create New User</a></li>"; 
-            echo "<li><a href='createCarPark.php'>Create New Car Park</a></li>";
-            echo "<li><a href='ParkSessionEnding.php'>Reservations</a></li>";
+            echo "<li class='sideBarSeperation'><a href='createUser.php'>Create New User</a></li>"; 
+            echo "<li class='sideBarSeperation'><a href='createCarPark.php'>Create New Car Park</a></li>";
+            echo "<li class='sideBarSeperation'><a href='ParkSessionEnding.php'>Reservations</a></li>";
           }
-          echo "<li><a href=\"logout.php\">Logout</a></li>
+          echo "<br/><br/><br/><br/><li class='sideBarSeperation' style='border-top: 1px solid white'><a href=\"logout.php\">Logout</a></li>
         </ul>
       </div><!-- End Sidebar -->";
   }
@@ -664,8 +665,13 @@
         //echo "<div class='col-lg-12'><label>License Plate</label>" . $row["CarLicensePlate"]. "<br/>Car Model - " . $row["CarType"] ."</>";
 
         echo "<div class='col-xs-12 col-md-4'>
-        <div class='carParkThumb'>
-          <img class='img-thumbnail' src='img/carParks/" . $row["CarParkCode"] . ".jpg' alt='An Image of a car park/car park building' />
+        <div class='carParkThumb'>";
+          //TODO: Add favourite car park functionality
+          // if(loggedIn()){
+          //   $user_id = $_SESSION['UserID'];
+          //   echo "<i class='heart fa fa-heart-o favourite'></i>";
+          // }
+          echo "<img class='img-thumbnail' src='img/carParks/" . $row["CarParkCode"] . ".jpg' alt='An Image of a car park/car park building' />
           <p class='carParktitle'>" . $row["CarParkName"] . "</p>
           <div class='carParkoverlay'></div>
           <div class='carParkbutton'><a class='btn btn-primary' href='CarPark.php?cp=" . $row["CarParkID"] . "'>BOOK</a></div>
