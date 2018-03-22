@@ -716,7 +716,7 @@
 
               //Getting Each floor depending on the carParkID
               $sql = "SELECT DISTINCT FloorNumber FROM space WHERE CarParkID = $CarParkID ORDER BY FloorNumber";
-              $result = $db->query($sql); 
+              $result = $db->query($sql);
               if ($result->num_rows > 0) {
                 // output data of each row
                 echo "

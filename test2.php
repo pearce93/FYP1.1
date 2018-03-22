@@ -58,7 +58,7 @@
 
 		<br/><br/><br/>
 
-		<?php getCarPark(1); ?>
+		
 		<br />
 		<label>Mark Spaces As:</label><br/>
 		<button onclick="setSpaceType('Available')">Available</button> 
@@ -208,7 +208,7 @@
 	/*	The user has passed through the amount of floors and it's rows and columns. If there is more than 1 floor then we take the first two 
 		elements of the array. [0] will be row. [1] is column.
 	*/
-	
+	$f = 1;
 	while (count($arrayList) != 1) {
 
 		//Getting the first row and column.
@@ -232,13 +232,10 @@
 
 					echo "<br/><br/><br/>";
 					echo "CarParkID - $CarParkID<br/>";
-					echo "FloorNumber - $Floors<br/>";
+					echo "FloorNumber - $f<br/>";
 					echo "SpaceRow - $i<br/>";
 					echo "SpaceColumn - $j<br/>";
 					echo "SpaceTypeID - 1<br/>";
-
-
-
 
 					echo "<br/><br/><br/>";
 
@@ -248,12 +245,12 @@
 					$stmt->bind_param("iiiii", $CarParkID1, $FloorNumber, $SpaceRow, $SpaceColumn, $SpaceTypeID);
 
 					$CarParkID1 = $CarParkID;
-					$FloorNumber = $Floors;
+					$FloorNumber = $f;
 					$SpaceRow = $i;
 					$SpaceColumn = $j;
 					$SpaceTypeID = 1;
 
-					//$stmt->execute();
+					$stmt->execute();
 
 					echo "New records created successfully";
 
@@ -264,7 +261,7 @@
 				set_time_limit(30);
 			}
 
-			$Floors--;
+			$f++;
 
 			
 

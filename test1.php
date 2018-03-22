@@ -51,8 +51,8 @@
 	for ($i= 1; $i <= $cpFloors; $i++) { 
 		echo "<h3>Floor $i</h3>";
 
-		echo "<input name='rows$i' type='number' placeholder='Amount of Rows' required/> ";
-		echo "<input name='columns$i' type='number' placeholder='Amount of Columns' required/>";
+		echo "<input name='rows_$i' type='number' placeholder='Amount of Rows' required/> ";
+		echo "<input name='columns_$i' type='number' placeholder='Amount of Columns' required/>";
 	}
 
 	echo "<br /><br />
