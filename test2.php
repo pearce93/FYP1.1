@@ -7,55 +7,20 @@
   <body>
 
     <?php getNav(); ?>
-	<style type="text/css">
-		.Available {
-			position:relative;
-			border-left: solid;
-			width: 4px;
-		}
-
-		.Available:last-of-type{
-			border-right: solid;
-		}
-
-		.Available:before {
-			content: "\f1b9";  /* this is your text. You can also use UTF-8 character codes as I do here */
-			font-family: FontAwesome;
-			left:-5px;
-			top:0;
-		}
-
-		.Available:hover {
-			border-color: black;
-			color: #1275BB;
-			cursor: pointer;
-		}
-
-		.Road {
-			position:relative;
-			background-color: grey;
-		}
-
-		.Road{
-			cursor: not-allowed;
-		}
-
-		.Road:first-of-type {
-			border-left: solid;
-		}
-
-		.Road:last-of-type {
-			border-right: solid;
-		}
-	</style>
     <!-- Main Content -->
 
     <div class="container">
 		<div id="result"></div>
 		<br /><br /><br />
 		
-
-
+		<form action='test3.php' method='post'>
+			<h3>Weekend Rate £</h3>
+			<input name='weekendRate' type='text' placeholder='Weekdend Rate' required/> 
+			<h3>Weekday Rate £</h3>
+			<input name='weekdayRate' type='text' placeholder='Weekday Rate' required/>
+			<input type='submit' value='Submit' />
+		</form>
+		
 		<br/><br/><br/>
 
 		
@@ -250,7 +215,7 @@
 					$SpaceColumn = $j;
 					$SpaceTypeID = 1;
 
-					$stmt->execute();
+					//$stmt->execute();
 
 					echo "New records created successfully";
 
@@ -289,6 +254,9 @@
 	$db->close();
 	echo count($arrayList);
 	echo "<br/><br/><br/>";
+
+
+	//header("Location: addRates.php")
 	// var_dump($arrayList);
 	// echo "<br /><br />". count($arrayList);
 

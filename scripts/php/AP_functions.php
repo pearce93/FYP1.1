@@ -202,7 +202,7 @@
     echo "<!-- Sidebar -->
       <div id=\"sidebar-wrapper\">
         <ul class=\"sidebar-nav\">
-          <li class='sideBarSeperation'><a href=\"#\">Account</a></li>
+          <li class='sideBarSeperation'><a href=\"account.php\">Account</a></li>
 
           <li class='sideBarSeperation'><a href=\"#\">Settings</a></li>
           <li class='sideBarSeperation'><a href='bookingBreakdowns.php'>Breakdowns</a></li>";
