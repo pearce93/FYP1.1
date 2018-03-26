@@ -39,7 +39,7 @@
 	$cpFloors = $_POST["cpFloors"];
 	$cpDetails = $_POST["cpDetails"];
 
-	//$stmt->execute();
+	$stmt->execute();
 
 	echo "New records created successfully";
 

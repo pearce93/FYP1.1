@@ -698,7 +698,7 @@
     }
   }
 
-  function getNewCarPark(){    
+  function getNewCarPark(){
         global $db;
         db_connect();
         if(isset($_SESSION['UserID'])){
@@ -719,25 +719,21 @@
               $result = $db->query($sql);
               if ($result->num_rows > 0) {
                 // output data of each row
-                echo "
-                    <ul class='nav nav-tabs'>";
+                //echo "    <ul class='nav nav-tabs'>";
                   //Looping to find the amount floors in the carPark
                 while($row = $result->fetch_assoc()) {
-                  echo "<li><a data-toggle='tab' href='#floor".$row["FloorNumber"]."'>Floor ".$row["FloorNumber"]."</a></li>";
+                  //echo "<li><a data-toggle='tab' href='#floor".$row["FloorNumber"]."'>Floor ".$row["FloorNumber"]."</a></li>";
                 };
-                echo "</ul>";
+                //echo "</ul>";
                 //Turning the amount of floors into different tabs with different content for each floor.
                 $sql = "SELECT DISTINCT FloorNumber FROM space WHERE CarParkID = $CarParkID";
                 $result = $db->query($sql); 
                 if($result->num_rows > 0) {
-                  echo "<div class='tab-content'>
-                    <div id='floor" . $row["FloorNumber"] . "' class='tab-pane active in home'>
-                      
-                    </div>";
+                  
                   while($row = $result->fetch_assoc()) {
                   
                     echo "
-                        <div id='floor" . $row["FloorNumber"] . "' class='tab-pane fade table-responsive'>
+                        <div id='floor" . $row["FloorNumber"] . "' class='tab-pane table-responsive'>
                           <table id='carPark" . $row["FloorNumber"] . "' class='table'>
                             <thead>";
                             $sqlTH = "SELECT DISTINCT SpaceColumn FROM space WHERE FloorNumber = " . $row["FloorNumber"] . " AND CarParkID = $CarParkID";

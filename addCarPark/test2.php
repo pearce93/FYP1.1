@@ -88,19 +88,6 @@
 						myTable += "<td id='" + individualCount + "' class='column" + j + "'>" + j;
 						individualCount++;
 						myTable += "</td>";
-
-
-						//Insert into database here
-
-						/*
-								$CarParkID
-								$FloorNumber = f;
-								$SpaceRow = i;
-								$SpaceColumn = j;
-
-								//SpaceTypeID defaulted to 1 and marked as available.
-								$SpaceTypeID = 1
-						*/
 					}
 
 					myTable += "</tr>";
@@ -243,7 +230,7 @@
 					$SpaceColumn = $j;
 					$SpaceTypeID = 1;
 
-					//$stmt->execute();
+					$stmt->execute();
 
 					echo "New records created successfully";
 

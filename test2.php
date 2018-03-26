@@ -215,7 +215,7 @@
 					$SpaceColumn = $j;
 					$SpaceTypeID = 1;
 
-					//$stmt->execute();
+					$stmt->execute();
 
 					echo "New records created successfully";
 
