@@ -732,7 +732,7 @@
                   
                   while($row = $result->fetch_assoc()) {
                   
-                    echo "
+                    echo "<h3>Floor " . $row["FloorNumber"] . "</h3>
                         <div id='floor" . $row["FloorNumber"] . "' class='tab-pane table-responsive'>
                           <table id='carPark" . $row["FloorNumber"] . "' class='table'>
                             <thead>";
