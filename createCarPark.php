@@ -12,8 +12,40 @@
           <div class="row">
             <div class="col-lg-12">
               <a href="#" class="btn btn-primary" id="menu-toggle"><i id="menu-toggle-button" class="fa fa-arrow-left"></i></a>
-              <h1>Sidebar Layout</h1>      
-              <p>This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. </p>
+              <h1>Create New Car Park</h1>
+                <form id="createCarPark" action="test1.php" method="post">
+                  <div class="row">
+                    <div class="col-lg-6">          
+                      <input type="text" name="cpName" placeholder="Car Park Name" required="">     
+                    </div>
+                    <div class="col-lg-6">
+                      <input type="text" name="cpCode" placeholder="Code" required="">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <input type="text" name="cpAddress" placeholder="Address" required="">
+                    </div>
+                    <div class="col-lg-6">
+                      <input type="text" name="cpPostCode" placeholder="Post Code" required="">         
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <input type="text" name="cpCity" placeholder="City" required="">
+                    </div>
+                    <div class="col-lg-6">
+                      <input type="text" name="cpFloors" placeholder="Floors" required="">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <textarea rows="5" cols="60" name="cpDetails" placeholder="Details" form="createCarPark"></textarea>
+                    </div>
+                  </div>
+
+                  <input type="submit" value="Submit">
+                </form>
             </div>
           </div>
         </div>
