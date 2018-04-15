@@ -1,89 +1,93 @@
 <?php include_once("scripts/php/AP_functions.php"); ?>
-
-
-<!DOCTYPE html>
-<html>
-<head>
-	<?php getHead(); ?>
-	<title></title>
-
-    <?php getNav(); ?>
-
-</head>
+<?php getHead(); ?>
 <body>
-<style type="text/css">
-		.Available {
-			position:relative;
-			border-left: solid;
-			width: 4px;
-		}
+	<?php getNav(); ?>
 
-		.Available:last-of-type{
-			border-right: solid;
-		}
+	<style type="text/css">
+			.Available {
+				position:relative;
+				border-left: solid;
+				width: 4px;
+			}
 
-		.Available:before {
-			content: "\f1b9";  /* this is your text. You can also use UTF-8 character codes as I do here */
-			font-family: FontAwesome;
-			left:-5px;
-			top:0;
-		}
+			.Available:last-of-type{
+				border-right: solid;
+			}
 
-		.Available:hover {
-			border-color: black;
-			color: #1275BB;
-			cursor: pointer;
-		}
+			.Available:before {
+				content: "\f1b9";  /* this is your text. You can also use UTF-8 character codes as I do here */
+				font-family: FontAwesome;
+				left:-5px;
+				top:0;
+			}
 
-		.Road {
-			position:relative;
-			background-color: grey;
-		}
+			.Available:hover {
+				border-color: black;
+				color: #1275BB;
+				cursor: pointer;
+			}
 
-		.Road{
-			cursor: not-allowed;
-		}
+			.Road {
+				position:relative;
+				background-color: grey;
+			}
 
-		.Road:first-of-type {
-			border-left: solid;
-		}
+			.Road{
+				cursor: not-allowed;
+			}
 
-		.Road:last-of-type {
-			border-right: solid;
-		}
-</style>
-	<div class="container">
+			.Road:first-of-type {
+				border-left: solid;
+			}
 
-		<div class="row">
-			<div class="col-xs-12">
-				<h1>Draw out car park</h1>
-				<?php getNewCarPark(); ?>				
+			.Road:last-of-type {
+				border-right: solid;
+			}
+	</style>
+
+	<div id="wrapper" class="sidebarDisplayed">
+
+	<?php getSideBar(); ?>
+    <!-- Main Content -->
+
+	<div id="page-content-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12">
+            	<a href="#" class="btn btn-primary" id="menu-toggle"><i id="menu-toggle-button" class="fa fa-arrow-left"></i></a>
+    			<div class="row">
+					<div class="col-xs-12">
+						<h1>Draw out car park</h1>
+						<?php getNewCarPark(); ?>				
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-
-	<div class="container topMargin">
-		<div class="row">
-			<div class="col-xs-2">
-				<input class="btn btn-primary btn-block" type="button" value="Available" onclick="setSpaceType('Available');" />
-			</div>
-			<div class="col-xs-2">
-				<input class="btn btn-primary btn-block" type="button" value="Unavailable" onclick="setSpaceType('Unavailable');" />
-			</div>
-			<div class="col-xs-2">
-				<input class="btn btn-primary btn-block" type="button" value="Disabled" onclick="setSpaceType('Disabled');" />
-			</div>
-			<div class="col-xs-2">
-				<input class="btn btn-primary btn-block" type="button" value="Family" onclick="setSpaceType('Family');" />
-			</div>
-			<div class="col-xs-2">
-				<input class="btn btn-primary btn-block" type="button" value="Road" onclick="setSpaceType('Road');" />
-			</div>
-			<div class="col-xs-2">
-				<a href="index.php" class="btn btn-success btn-block">Finished</a>
+		<div class="container-fluid topMargin">
+			<div class="row">
+				<div class="col-xs-2">
+					<input class="btn btn-primary btn-block" type="button" value="Available" onclick="setSpaceType('Available');" />
+				</div>
+				<div class="col-xs-2">
+					<input class="btn btn-primary btn-block" type="button" value="Unavailable" onclick="setSpaceType('Unavailable');" />
+				</div>
+				<div class="col-xs-2">
+					<input class="btn btn-primary btn-block" type="button" value="Disabled" onclick="setSpaceType('Disabled');" />
+				</div>
+				<div class="col-xs-2">
+					<input class="btn btn-primary btn-block" type="button" value="Family" onclick="setSpaceType('Family');" />
+				</div>
+				<div class="col-xs-2">
+					<input class="btn btn-primary btn-block" type="button" value="Road" onclick="setSpaceType('Road');" />
+				</div>
+				<div class="col-xs-2">
+					<a href="carParks.php" class="btn btn-success btn-block">Finished</a>
+				</div>
 			</div>
 		</div>
+		</div>
 	</div>
+	
 
 
 	<?php getScripts(); ?>

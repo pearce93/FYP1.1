@@ -44,7 +44,7 @@
                     </div>
                   </div>
 
-                  <input type="submit" value="Submit">
+                  <input class="btn btn-success" type="submit" value="Submit">
                 </form>
             </div>
           </div>

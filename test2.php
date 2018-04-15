@@ -1,39 +1,45 @@
 <?php require_once("scripts/php/AP_functions.php"); ?>
 
-<!DOCTYPE html>
-<html>
-  <?php getHead(); ?>
+<?php getHead(); ?>
+<body>
+	<?php getNav(); ?>
+	<div id="wrapper" class="sidebarDisplayed">
 
-  <body>
-
-    <?php getNav(); ?>
+	<?php getSideBar(); ?>
     <!-- Main Content -->
-
-    <div class="container">
-		<div id="result"></div>
-		<br /><br /><br />
-		
-		<form action='test3.php' method='post'>
-			<h3>Weekend Rate £</h3>
-			<input name='weekendRate' type='text' placeholder='Weekdend Rate' required/> 
-			<h3>Weekday Rate £</h3>
-			<input name='weekdayRate' type='text' placeholder='Weekday Rate' required/>
-			<input type='submit' value='Submit' />
-		</form>
-		
-		<br/><br/><br/>
-
-		
-		<br />
-		<label>Mark Spaces As:</label><br/>
-		<button onclick="setSpaceType('Available')">Available</button> 
-		<button onclick="setSpaceType('Unavailable')">Unavailable</button>
-		<button onclick="setSpaceType('Disabled')">Disabled</button>
-		<button onclick="setSpaceType('Family')">Family</button>
-		<button onclick="setSpaceType('Road')">Road</button>
-
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12">
+            	<a href="#" class="btn btn-primary" id="menu-toggle"><i id="menu-toggle-button" class="fa fa-arrow-left"></i></a>
+    			<div class="row">
+    				<div class="col-xs-12">
+		    			<h1>Create New Car Park</h1>
+    				</div>
+    			</div>
+				<form action='test3.php' method='post'>
+					<div class="row">
+    					<div class="col-xs-12">
+							<h3>Weekend Rate £</h3>
+							<input name='weekendRate' type='text' placeholder='Weekdend Rate' required/>
+						</div>
+					</div>
+					<div class="row">
+	    				<div class="col-xs-12">
+							<h3>Weekday Rate £</h3>
+							<input name='weekdayRate' type='text' placeholder='Weekday Rate' required/>
+						</div>
+					</div>
+					<div class="row">
+	    				<div class="col-xs-12">
+							<input class='btn btn-success' type='submit' value='Submit' />
+						</div>
+					</div>
+				</form>
+		   </div>
+	      </div>
+		</div>
 	</div>
-
 		<?php getScripts() ?>
 
 		<!-- Script for creating table -->
@@ -102,13 +108,13 @@
 					idList.push(cellID);
 				}
 				
-				console.log(idList);
+				//console.log(idList);
 			});//End Script for space types
 
 
 			function setSpaceType($spaceType){
 				for(var i = 0; i < idList.length; i++){
-					console.log(idList[i]);
+					//console.log(idList[i]);
 
 					$("td#"+idList[i]).removeClass("Available");
 					$("td#"+idList[i]).removeClass("Unavailable");
@@ -156,19 +162,19 @@
 	//$value is the value the user gave in the input field.
 	//Looping to get every instance of user data. 
 	foreach ($_POST as $key => $value){
-		echo "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
+		// echo "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
 		array_push($arrayList, $value);
 	}
 
 
 
 
-	echo "<br/><br/>";
-	echo "<br/><br/>";
-	echo "arrayList";
-	echo "<br/><br/>";
-	var_dump($arrayList);
-	echo "<br/><br/>";
+	// echo "<br/><br/>";
+	// echo "<br/><br/>";
+	// echo "arrayList";
+	// echo "<br/><br/>";
+	// var_dump($arrayList);
+	// echo "<br/><br/>";
 
 	/*	The user has passed through the amount of floors and it's rows and columns. If there is more than 1 floor then we take the first two 
 		elements of the array. [0] will be row. [1] is column.
@@ -188,21 +194,21 @@
 		//echo $column;
 
 			for ($i = 1; $i <= $row; $i++) { 
-				echo "Row = $i - Columns = ";
+				//echo "Row = $i - Columns = ";
 				for ($j = 1; $j <= $column; $j++) {
 					//getting every column inside row.
 
-					echo "<br />";
+					//echo "<br />";
 					//Insert into space table in the database.
 
-					echo "<br/><br/><br/>";
-					echo "CarParkID - $CarParkID<br/>";
-					echo "FloorNumber - $f<br/>";
-					echo "SpaceRow - $i<br/>";
-					echo "SpaceColumn - $j<br/>";
-					echo "SpaceTypeID - 1<br/>";
+					//echo "<br/><br/><br/>";
+					//echo "CarParkID - $CarParkID<br/>";
+					//echo "FloorNumber - $f<br/>";
+					//echo "SpaceRow - $i<br/>";
+					//echo "SpaceColumn - $j<br/>";
+					//echo "SpaceTypeID - 1<br/>";
 
-					echo "<br/><br/><br/>";
+					//echo "<br/><br/><br/>";
 
 					$query = "INSERT INTO space (CarParkID, FloorNumber, SpaceRow, SpaceColumn, SpaceTypeID) VALUES (?, ?, ?, ?, ?)";
 
@@ -217,11 +223,11 @@
 
 					$stmt->execute();
 
-					echo "New records created successfully";
+					//echo "New records created successfully";
 
 					$stmt->close();
 				}
-				echo "<br/>";
+				//echo "<br/>";
 				//getting every row.
 				set_time_limit(30);
 			}
@@ -233,27 +239,27 @@
 		array_shift($arrayList);
 		array_shift($arrayList);
 
-		echo "<br/><br/>";
-		echo "<br/><br/>";
-		echo "arrayList";
-		echo "<br/><br/>";
-		var_dump($output);
-		echo "<br/><br/>";
+		//echo "<br/><br/>";
+		//echo "<br/><br/>";
+		//echo "arrayList";
+		//echo "<br/><br/>";
+		//var_dump($output);
+		//echo "<br/><br/>";
 
-		echo "<br/><br/>";
-		echo "<br/><br/>";
-		echo "arrayList";
-		echo "<br/><br/>";
-		var_dump($arrayList);
-		echo "<br/><br/>";
+		//echo "<br/><br/>";
+		//echo "<br/><br/>";
+		//echo "arrayList";
+		//echo "<br/><br/>";
+		//var_dump($arrayList);
+		//echo "<br/><br/>";
 
 
 	}
 
 
 	$db->close();
-	echo count($arrayList);
-	echo "<br/><br/><br/>";
+	//echo count($arrayList);
+	//echo "<br/><br/><br/>";
 
 
 	//header("Location: addRates.php")

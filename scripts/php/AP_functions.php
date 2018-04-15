@@ -382,7 +382,9 @@
     }
   }
 
-  function registerUser(){
+  
+
+  function registerAdminUser(){
     global $db;
     db_connect();
     //Collecting the user inputs and assigning them.
@@ -391,7 +393,7 @@
     $Password = $_POST['password'];
     //Picking up on the users password and hashing it so that it is stored securely.
     $hashed_password = password_hash($Password, PASSWORD_DEFAULT);
-    
+    $userType = 1;
 
     //Checking that all the required feilds are set.
     if (!isset($Username) || !isset($Email) || !isset($Password))
@@ -401,21 +403,7 @@
       Please go back and try again.</p>";
       exit;
     }else{    
-      /*  This commented code is unsafe from SQL Injection.
-        It has been included into the code to show an alternative way of
-        adding items into a database.
-      
-
-        //Unsafe item inclusion.
-        $query = "INSERT INTO users (Firstname, Surname, Username, Password) 
-        VALUES ('$Firstname', '$Surname', '$Username', '$Password')";   
-        if($db->query($query) === TRUE){
-          echo "Info inserted";
-        }else{
-          echo "Error";
-        }   
-        $db->close();
-      */
+     
       
       $sql = "SELECT UserID, Username, EmailAddress, CreationDate FROM User WHERE Username = '$Username'";
       $result = $db->query($sql);
@@ -428,10 +416,10 @@
         $Message = "<p>Click <a href='register.php'>here</a> to go back and try again</p>";
       }else{
         //Creating a new user in the database.
-        $query = "INSERT INTO user (Username, EmailAddress, Password) VALUES (?, ?, ?)";
+        $query = "INSERT INTO user (Username, EmailAddress, Password, UserTypeID) VALUES (?, ?, ?, ?)";
       
         $stmt = $db->prepare($query);
-        $stmt->bind_param('sss', $Username, $Email, $hashed_password);
+        $stmt->bind_param('sssi', $Username, $Email, $hashed_password, $userType);
         if(false === $stmt){
           echo "Prepare Failed";
           exit;
@@ -444,22 +432,14 @@
           $query = "SELECT * FROM User WHERE Username = '" . $Username ."'";
           $tbl = $db->query($query);
           $user = $tbl->fetch_assoc();
-          $_SESSION["UserID"] = $user["UserID"];
           /*dumps information from database*/
           //var_dump($user);
         }else{
           die();
         }
         //Checking that the username exists in the database.
-        if(mysqli_num_rows($tbl)>0){
-          $user_id = $user['UserID'];
-          createSession($user_id);
-        } else {
-          echo "die";
-          echo "die";
-          die();
-          header('Location: register.php');
-        }
+
+          header('Location: index.php');
         
       }
 
