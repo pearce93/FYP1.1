@@ -312,10 +312,6 @@
       $query = "SELECT * FROM User WHERE Username = '" . $Username ."'";
       $tbl = $db->query($query);
       $user = $tbl->fetch_assoc();
-      
-      /*dumps information from database*/
-      //var_dump($user);
-
 
       //Checking that the username exists in the database.
       if(mysqli_num_rows($tbl)>0){
@@ -332,7 +328,8 @@
               $UserID = $row["UserID"];
               $Username = $row["Username"];
               $Email = $row["EmailAddress"];
-              $CreationDate = $row["CreationDate"];                         }
+              $CreationDate = $row["CreationDate"];                         
+            }
           }else{
             //Error message for the user as the login was unsuccessful.
             $FullName = "Unsuccessful";
