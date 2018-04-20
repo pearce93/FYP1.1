@@ -19,8 +19,7 @@
 	//CarID needs to be set to 7 as an anonymous user. TODO: Change default ID to 0
 	$CarID = 7;
 	//CarParkID = the value that we have recieved from the function call.
-	echo "$CarParkID";
-	die();
+
 	$CarParkName = getCarParkName($CarParkID);
 
 	//Filtering between start and end date to find out what spaces are free on those dates.
@@ -37,6 +36,7 @@
       //Finding all the spaces in the chosen car park that match the space type provided by the user.
       $sql = "SELECT * FROM `Space` WHERE CarParkID = $CarParkID AND SpaceTypeID = $spaceType";
       $result = $db->query($sql);
+
 
       if($result->num_rows > 0) {
       	while($row = $result->fetch_assoc()) {
@@ -63,7 +63,13 @@
       }
     }else{
     	//User can be given first available space with no check needed because the dates have already been compared and everything was fine.
-    	echo "Insert here";
+    	$sql = "SELECT * FROM `space` WHERE `CarParkID` = 8 AND SpaceTypeID = 1 LIMIT 1";
+    	$result = $db->query($sql);
+    	if($result->num_rows > 0){
+    		while ($row = $result->fetch_assoc()) {
+    			$SpaceID = (int)$row["SpaceID"];
+    		}
+    	}
     }
 
 	//Getting the total amount of minutes they have reserved.
@@ -103,7 +109,7 @@
 
 	$sql = "SELECT * FROM ParkingRates WHERE RateTypeID = $ParkingRateID AND CarParkID = $CarParkID";
 	$result = $db->query($sql);
-
+	
 	if($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
 			$carParkRate = $row["RateAmount"];
