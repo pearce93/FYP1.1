@@ -11,12 +11,12 @@
     <div class="container">
     	<div class="row">
     		<div class="col-xs-12 topMargin">
-    			<img src="img/CarParks.png" class="" alt="Responsive Image">
+    			<img src="img/CarParks.png" class="img-responsive" alt="Responsive Image">
     		</div>
     	</div>
     	<div class="row">
     		<div class="col-xs-12 topMargin">
-    			<img src="img/BookSpace.png" class="" alt="Responsive Image">
+    			<img src="img/BookSpace.png" class="img-responsive" alt="Responsive Image">
     		</div>
     	</div>
     </div>
